@@ -5,7 +5,7 @@ const ContactForRenting: React.FC = () => {
   return (
     <section
       id="cta-renting"
-      className="w-full bg-cover bg-center relative sm:h-[500px] py-24 sm:py-32"
+      className="w-full bg-fixed bg-cover bg-center relative sm:h-[500px] py-24 sm:py-32"
       style={{ backgroundImage: `url(${bgContactForRenting})`}}
     >
       {/* Dark Overlay */}
