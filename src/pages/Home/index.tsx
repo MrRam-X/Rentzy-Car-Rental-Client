@@ -1,6 +1,9 @@
 import React from "react";
 import heroSectionImage from "../../assets/images/HeroSection.jpg";
 import ContactForRenting from "../../components/common/ContactForRenting";
+import AboutUsSection from "../../components/common/AboutUsSection";
+import BookAutoRental from "./components/BookAutoRental";
+import CarRentalProcess from "./components/CarRentalProcess";
 
 const Home: React.FC = () => {
   return (
@@ -81,16 +84,19 @@ const Home: React.FC = () => {
         </div>
       </section>
       {/* <!-- About Us Section --> */}
+      <AboutUsSection />
 
       {/* <!-- SERVICES SECTION --> */}
 
-      {/* <!-- Rental Filter/Search Section --> */}
+      {/* <!-- Book Auto Rental --> */}
+      <BookAutoRental />
 
       {/* <!-- LUXURY CAR FLEET SECTION --> */}
 
       {/* RENTAL CAR TYPES CAROUSEL*/}
 
       {/* CAR RENTAL PROCESS */}
+      <CarRentalProcess />
 
       {/* Contact For Renting */}
       <ContactForRenting />
