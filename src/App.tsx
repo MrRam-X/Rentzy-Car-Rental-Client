@@ -8,14 +8,12 @@ import Footer from "./components/Footer/Footer";
 function App() {
   return (
     <GlobalContextProvider>
+      <Header />
       <section
         className="relative h-screen w-full bg-cover bg-center flex items-center"
         style={{ backgroundImage: `url(${heroSectionImage})` }}
       >
-      <Header />
-        <div className="w-full flex justify-center items-center">
-          <h1 className="text-3xl text-center text-white">Test</h1>
-        </div>
+        <div className="absolute inset-0 bg-black/60"></div>
       </section>
       <Footer />
     </GlobalContextProvider>

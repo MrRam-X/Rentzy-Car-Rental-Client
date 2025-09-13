@@ -1,0 +1,17 @@
+/* Custom styles for the header transition */
+.header-scrolled {
+    background-color: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.header-scrolled .nav-link,
+.header-scrolled .logo-text,
+.header-scrolled .contact-text,
+.header-scrolled .mobile-btn {
+    color: #121212;
+}
+
+.header-scrolled .contact-icon-wrapper {
+    border-color: #e5e7eb;
+  /* gray-200 */
+}
