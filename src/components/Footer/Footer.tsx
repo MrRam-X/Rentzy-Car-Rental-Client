@@ -25,7 +25,7 @@ const Footer = () => {
               </div>
               <div>
                 <p className="font-bold text-white text-md">Call us</p>
-                <p className="text-sm">+971 52-333-4444</p>
+                <p className="text-sm">+91 752-333-4444</p>
               </div>
             </div>
 
@@ -49,7 +49,7 @@ const Footer = () => {
               </div>
               <div>
                 <p className="font-bold text-white text-md">Write to us</p>
-                <p className="text-sm">info@renax.com</p>
+                <p className="text-sm">hello@rentzy.com</p>
               </div>
             </div>
 
@@ -90,7 +90,7 @@ const Footer = () => {
           {/* <!-- Column 1: Brand Info --> */}
           <div className="col-span-3">
             <h3 className="text-3xl font-bold text-white mb-4">
-              RE<span className="text-brand-gold">NAX</span>
+              RENT<span className="text-brand-gold">ZY</span>
             </h3>
             <p className="mb-6">
               Rent a car imperdiet sapien porttitor to the bibendum ellentesue
