@@ -3,6 +3,7 @@ import {
 } from "./context/GlobalContext";
 import heroSectionImage from "./assets/images/HeroSection.jpg";
 import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <h1 className="text-3xl text-center text-white">Test</h1>
         </div>
       </section>
+      <Footer />
     </GlobalContextProvider>
   );
 }
