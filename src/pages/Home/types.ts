@@ -11,3 +11,9 @@ export type VehicleCardType = {
     age: number;
   };
 };
+
+export type ServiceCardType = {
+  id: number;
+  title: string;
+  imgSrc: string;
+};

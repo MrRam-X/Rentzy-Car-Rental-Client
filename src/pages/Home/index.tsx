@@ -5,6 +5,7 @@ import AboutUsSection from "../../components/common/AboutUsSection";
 import BookAutoRental from "./components/BookAutoRental";
 import CarRentalProcess from "./components/CarRentalProcess";
 import LuxuryCarFleet from "./components/LuxuryCarFleet/LuxuryCarFleet";
+import OurServices from "./components/OurServices/OurServices";
 
 const Home: React.FC = () => {
   return (
@@ -88,6 +89,7 @@ const Home: React.FC = () => {
       <AboutUsSection />
 
       {/* Services Section Carousel*/}
+      <OurServices />
 
       {/* Book Auto Rental */}
       <BookAutoRental />
