@@ -1,0 +1,13 @@
+export type VehicleCardType = {
+  name: string;
+  price: number;
+  category: string;
+  image: string;
+  specs: {
+    seats: number;
+    transmission: string;
+    fuel: string;
+    airbags: number;
+    age: number;
+  };
+};

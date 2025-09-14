@@ -14,4 +14,6 @@ const APP_ROUTE_NAMES = {
 
 const APP_ROUTES: AppRoute[] = [{ path: "/", Component: Home }];
 
-export { APP_ROUTE_NAMES, APP_ROUTES };
+const INITIAL_DISPLAY_CAR_FLEET_VEHICLES = 6;
+
+export { APP_ROUTE_NAMES, APP_ROUTES, INITIAL_DISPLAY_CAR_FLEET_VEHICLES };

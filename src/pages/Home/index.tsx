@@ -4,10 +4,12 @@ import ContactForRenting from "../../components/common/ContactForRenting";
 import AboutUsSection from "../../components/common/AboutUsSection";
 import BookAutoRental from "./components/BookAutoRental";
 import CarRentalProcess from "./components/CarRentalProcess";
+import LuxuryCarFleet from "./components/LuxuryCarFleet/LuxuryCarFleet";
 
 const Home: React.FC = () => {
   return (
-    <main>
+    <main className="font-outfit">
+      {/* Hero Section */}
       <section
         className="relative h-screen w-full bg-cover bg-center flex items-center"
         style={{ backgroundImage: `url(${heroSectionImage})` }}
@@ -45,9 +47,9 @@ const Home: React.FC = () => {
                   stroke="currentColor"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M17 8l4 4m0 0l-4 4m4-4H3"
                   />
                 </svg>
@@ -57,18 +59,17 @@ const Home: React.FC = () => {
               className="w-full sm:w-auto flex items-center justify-center gap-3 border-2 border-white text-white py-4 px-8 rounded-full transition-all duration-300 ease-in-out hover:bg-brand-gold hover:text-black hover:border-brand-gold hover:-translate-y-1"
             >
               <span>Rent Now</span>
-              {/* Right Arrow SVG Icon */}
               <svg
                 className="w-6 h-6"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                stroke-width="1"
+                strokeWidth="1"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M7 17L17 7M17 12L17 7L12 7"
                 />
               </svg>
@@ -83,19 +84,20 @@ const Home: React.FC = () => {
           <button className="w-3 h-3 rounded-full border-2 border-gray-400 hover:bg-gray-400"></button>
         </div>
       </section>
-      {/* <!-- About Us Section --> */}
+      {/* About Us Section */}
       <AboutUsSection />
 
-      {/* <!-- SERVICES SECTION --> */}
+      {/* Services Section Carousel*/}
 
-      {/* <!-- Book Auto Rental --> */}
+      {/* Book Auto Rental */}
       <BookAutoRental />
 
-      {/* <!-- LUXURY CAR FLEET SECTION --> */}
+      {/* Luxury Car Fleet Section */}
+      <LuxuryCarFleet />
 
-      {/* RENTAL CAR TYPES CAROUSEL*/}
+      {/* Rental Car Types Carousel*/}
 
-      {/* CAR RENTAL PROCESS */}
+      {/* Car Rental PROCESS */}
       <CarRentalProcess />
 
       {/* Contact For Renting */}
