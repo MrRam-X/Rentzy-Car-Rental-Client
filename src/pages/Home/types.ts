@@ -17,3 +17,8 @@ export type ServiceCardType = {
   title: string;
   imgSrc: string;
 };
+
+export type RentalCategoryType = {
+    title: string;
+    imageSrc: string;
+}
