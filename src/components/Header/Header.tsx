@@ -19,7 +19,7 @@ const Header: React.FC = () => {
     <>
       {/* HEADER */}
       <header
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        className={`font-outfit fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
           isScrolled ? "header-scrolled" : ""
         }`}
       >
