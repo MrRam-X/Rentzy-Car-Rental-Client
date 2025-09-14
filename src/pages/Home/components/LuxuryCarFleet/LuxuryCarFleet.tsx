@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import VehicleCard from "./VehicleCard";
 import type { VehicleCardType } from "../../types";
 import { INITIAL_DISPLAY_CAR_FLEET_VEHICLES } from "../../../../appConstant";
@@ -145,6 +145,11 @@ const LuxuryCarFleet: React.FC = () => {
   const [tabList, setTabList] = useState(initialTabList);
   const [carList, setCarList] = useState<VehicleCardType[]>(initialCarListData);
   const [showMore, setShowMore] = useState<boolean>(false)
+
+  // Temporary setting the car list once component mounts
+  useEffect(() => {
+    setCarList(initialCarListData)
+  }, [])
 
   // Function to apply active class
   const getClassNameForTabSelectionStatus = (tabValue: string) => {
