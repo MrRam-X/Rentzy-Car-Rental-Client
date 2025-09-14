@@ -1,5 +1,6 @@
 import React from "react";
 import heroSectionImage from "../../../assets/images/HeroSection.jpg";
+import CustomLinkButton from "../../../components/common/Buttons/CustomLinkButton";
 
 const HeroSection: React.FC = () => {
   return (
@@ -25,46 +26,26 @@ const HeroSection: React.FC = () => {
           </div>
 
           <div className="flex flex-wrap gap-4">
-            <a
-              href="#"
-              className="w-full sm:w-auto flex items-center justify-center gap-3 border-2 border-brand-gold bg-brand-gold text-black py-4 px-8 rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300 ease-in-out hover:-translate-y-1"
-            >
-              <span>View Details</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
-            </a>
-            <a
-              href="#"
-              className="w-full sm:w-auto flex items-center justify-center gap-3 border-2 border-white text-white py-4 px-8 rounded-full transition-all duration-300 ease-in-out hover:bg-brand-gold hover:text-black hover:border-brand-gold hover:-translate-y-1"
-            >
-              <span>Rent Now</span>
-              <svg
-                className="w-6 h-6"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="1"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M7 17L17 7M17 12L17 7L12 7"
-                />
-              </svg>
-            </a>
+            {/* View Details Button */}
+            <CustomLinkButton 
+              borderClassName="border-2 border-brand-gold rounded-full"
+              colorClassName="bg-brand-gold text-black"
+              paddingClassName="py-4 px-8"
+              hoverClassName="hover:bg-white hover:text-black hover:border-white hover:-translate-y-1"
+              transitionClassName="transition-all duration-300 ease-in-out"
+              linkTitle="View Details"
+              iconElementName="RIGHT_ARROW"
+            />
+            {/* Rent Now Button */}
+            <CustomLinkButton 
+              borderClassName="border-2 border-white rounded-full"
+              colorClassName="text-white"
+              paddingClassName="py-4 px-8"
+              hoverClassName="hover:bg-brand-gold hover:text-black hover:border-brand-gold hover:-translate-y-1"
+              transitionClassName="transition-all duration-300 ease-in-out"
+              linkTitle="Rent Now"
+              iconElementName="TOP_RIGHT_ARROW"
+            />
           </div>
         </div>
       </div>

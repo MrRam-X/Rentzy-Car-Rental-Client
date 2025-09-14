@@ -1,12 +1,12 @@
 import React from "react";
-import imgAboutUsSection from "../../assets/images/AboutUsEmployeeImage.jpg"
+import imgAboutUsSection from "../../assets/images/AboutUsEmployeeImage.jpg";
+import CustomLinkButton from "./Buttons/CustomLinkButton";
 
 const AboutUsSection: React.FC = () => {
   return (
-    //   <!-- About Us Section -->
     <section className="py-12 px-6 md:px-12 lg:px-20 flex justify-center">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center max-w-6xl">
-        {/* <!-- Left Content --> */}
+        {/* Left Content */}
         <div className="text-center md:text-left">
           <p className="uppercase font-semibold text-sm tracking-[0.2em] text-brand-gold mb-2">
             Rentzy
@@ -22,7 +22,7 @@ const AboutUsSection: React.FC = () => {
             the miss on volume interdum.
           </p>
 
-          {/* <!-- Feature List --> */}
+          {/* Feature List */}
           <ul className="space-y-4 mb-6">
             <li className="flex items-center justify-center md:justify-start space-x-3">
               <span className="w-6 h-6 flex items-center justify-center rounded-full bg-gray-100">
@@ -64,30 +64,20 @@ const AboutUsSection: React.FC = () => {
             </li>
           </ul>
 
-          {/* <!-- Button --> */}
-          <a
-            href="#"
-            className="inline-flex items-center px-6 py-3 bg-brand-gold text-black hover:bg-black hover:text-brand-gold transition-colors duration-500 font-medium rounded-full shadow"
-          >
-            Read More
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="ml-2 h-4 w-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </a>
+          {/* Button */}
+          <CustomLinkButton
+            borderClassName="rounded-full shadow"
+            colorClassName="bg-brand-gold text-black"
+            paddingClassName="px-6 py-3"
+            hoverClassName="hover:bg-black hover:text-brand-gold"
+            transitionClassName="transition-colors duration-500"
+            customClassName="inline-flex items-center font-medium"
+            linkTitle="Read More"
+            iconElementName="RIGHT_V_ARROW"
+          />
         </div>
 
-        {/* <!-- Right Image --> */}
+        {/* Right Image */}
         <div className="flex justify-center md:justify-end">
           <img
             src={imgAboutUsSection}
