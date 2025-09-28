@@ -5,6 +5,7 @@ import Spinner from "./components/spinner/Spinner";
 import MainLayout from "./components/layout/MainLayout";
 import { APP_ROUTES } from "./appConstant";
 import ErrorNotFound from "./pages/404Error";
+import './App.css'
 
 
 function App() {

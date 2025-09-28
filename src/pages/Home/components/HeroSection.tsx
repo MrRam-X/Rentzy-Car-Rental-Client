@@ -1,12 +1,10 @@
 import React from "react";
-import heroSectionImage from "../../../assets/images/HeroSection.jpg";
 import CustomLinkButton from "../../../components/common/Buttons/CustomLinkButton";
 
 const HeroSection: React.FC = () => {
   return (
     <section
-      className="relative h-screen w-full bg-cover bg-center flex items-center"
-      style={{ backgroundImage: `url(${heroSectionImage})` }}
+      className="relative h-screen w-full bg-hero-pattern bg-cover bg-center flex items-center"
     >
       <div className="absolute inset-0 bg-black/60"></div>
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 text-white max-w-6xl">
@@ -48,12 +46,6 @@ const HeroSection: React.FC = () => {
             />
           </div>
         </div>
-      </div>
-      {/* Slider Indicators */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex space-x-3">
-        <button className="w-3 h-3 rounded-full bg-brand-gold"></button>
-        <button className="w-3 h-3 rounded-full border-2 border-gray-400 hover:bg-gray-400"></button>
-        <button className="w-3 h-3 rounded-full border-2 border-gray-400 hover:bg-gray-400"></button>
       </div>
     </section>
   );
