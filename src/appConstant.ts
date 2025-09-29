@@ -11,6 +11,7 @@ const Contact = lazy(() => import("./pages/Contact"));
 const About = lazy(() => import("./pages/About"));
 const Cars = lazy(() => import("./pages/Cars"));
 const Services = lazy(() => import("./pages/Services"));
+const CarDetails = lazy(() => import("./pages/CarDetails"))
 
 const APP_ROUTE_NAMES = {
   HOME: "/",
@@ -25,6 +26,7 @@ const APP_ROUTES: AppRoute[] = [
   { path: "/about", Component: About },
   { path: "/contact", Component: Contact },
   { path: "/cars", Component: Cars },
+  { path: "/cars/:id", Component: CarDetails },
   { path: "/services", Component: Services },
 ];
 
