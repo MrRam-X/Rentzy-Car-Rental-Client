@@ -10,6 +10,7 @@ export default {
         "brand-gold": "#f5b754",
         "brand-dark": "#121212",
         "brand-gray": "#666666",
+        "brand-card": "#f5f4f0",
       },
     },
   },
