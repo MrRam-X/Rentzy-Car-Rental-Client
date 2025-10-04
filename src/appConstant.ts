@@ -48,7 +48,7 @@ const APP_ROUTES: AppRoute[] = [
   { path: "/about", Component: About },
   { path: "/contact", Component: Contact },
   { path: "/cars", Component: Cars },
-  { path: "/cars/:id", Component: CarDetails },
+  { path: "/cars/:carId", Component: CarDetails },
   { path: "/services", Component: Services },
 ];
 
