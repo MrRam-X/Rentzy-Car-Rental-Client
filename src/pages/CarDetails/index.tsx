@@ -8,7 +8,7 @@ import RentalConditionsAccordion from "./components/RentalConditionsAccordion";
 
 const CarDetails: React.FC = () => {
   const { carDetailsData } = useCarDetailsData();
-  
+
   return (
     <main className="font-outfit">
       {/* Hero Section */}
@@ -41,7 +41,7 @@ const CarDetails: React.FC = () => {
       />
 
       {/* Rental Conditions Accordion */}
-      <RentalConditionsAccordion />
+      <RentalConditionsAccordion rentalConditions={carDetailsData?.rentalConditions || []}/>
 
       {/* Section: Interested In Renting */}
       <ContactForRenting />
