@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import type { Car } from "../../../types/Cars";
-import { CARS_IMAGE_URL } from "../../../appConstant";
+import { generateImageUrl } from "../../../utils/commonUtils";
 
 type CarsCardProps = Car
 
@@ -23,7 +23,7 @@ const CarsCard: React.FC<CarsCardProps> = ({
       {/* <!-- Image Container with Hover Effects --> */}
       <div className="relative overflow-hidden">
         <img
-          src={`${CARS_IMAGE_URL[carType as keyof typeof CARS_IMAGE_URL]}/${primaryImageUri}`}
+          src={generateImageUrl(primaryImageUri, carType)}
           alt={`${brand} ${model}`}
           className="w-full h-56 object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
         />
@@ -91,7 +91,7 @@ const CarsCard: React.FC<CarsCardProps> = ({
                 <path
                   fill-rule="evenodd"
                   d="M3 3a1 1 0 011-1h12a1 1 0 011 1v1h-2V3a1 1 0 00-1-1H5a1 1 0 00-1 1v1H3V3zM3 7v10a2 2 0 002 2h10a2 2 0 002-2V7H3zm2-1h10v1H5V6z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 />
               </svg>
               Luggage
