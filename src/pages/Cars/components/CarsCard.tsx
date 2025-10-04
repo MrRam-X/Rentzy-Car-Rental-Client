@@ -1,12 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import type { Car } from "../../../types/Cars";
+import { CARS_IMAGE_URL } from "../../../appConstant";
 
 type CarsCardProps = Car
 
 const CarsCard: React.FC<CarsCardProps> = ({
   _id,
   primaryImageUri,
+  carType,
   brand,
   model,
   doors,
@@ -21,7 +23,7 @@ const CarsCard: React.FC<CarsCardProps> = ({
       {/* <!-- Image Container with Hover Effects --> */}
       <div className="relative overflow-hidden">
         <img
-          src={primaryImageUri}
+          src={`${CARS_IMAGE_URL[carType as keyof typeof CARS_IMAGE_URL]}/${primaryImageUri}`}
           alt={`${brand} ${model}`}
           className="w-full h-56 object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
         />
