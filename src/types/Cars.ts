@@ -12,6 +12,8 @@ export interface Car {
   passengers: number;
   transmission: string;
   luggage: number;
+  fuel: string;
+  airBags: number;
   airCondition: boolean;
   minAgeForDrive: number;
   primaryImageUri: string;

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import VehicleCard from "./VehicleCard";
-import type { VehicleCardType } from "../../types";
 import { INITIAL_DISPLAY_CAR_FLEET_VEHICLES } from "../../../../appConstant";
+import { useGlobalContext } from "../../../../context/GlobalContext";
+import { carService } from "../../../../services/CarService";
+import type { Car } from "../../../../types/Cars";
 
 const initialTabList = [
   {
@@ -16,140 +18,40 @@ const initialTabList = [
   },
   {
     label: "Sports",
-    value: "SPORTS",
+    value: "Sports",
     isActive: false,
   },
   {
     label: "Sedans",
-    value: "SEDANS",
+    value: "Sedan",
     isActive: false,
   },
 ];
 
-const initialCarListData: VehicleCardType[] = [
-  {
-    name: "Bentley Bentayga",
-    price: 4000,
-    category: "SUV",
-    image:
-      "https://images.pexels.com/photos/15942431/pexels-photo-15942431/free-photo-of-a-silver-bentley-parked-in-the-desert.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    specs: {
-      seats: 5,
-      transmission: "Auto",
-      fuel: "Petrol",
-      airbags: 8,
-      age: 25,
-    },
-  },
-  {
-    name: "Ferrari 296 GTB",
-    price: 8200,
-    category: "SPORTS",
-    image:
-      "https://images.pexels.com/photos/1637859/pexels-photo-1637859.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    specs: {
-      seats: 2,
-      transmission: "Auto",
-      fuel: "Petrol",
-      airbags: 4,
-      age: 25,
-    },
-  },
-  {
-    name: "Mercedes S-Class",
-    price: 4500,
-    category: "SEDANS",
-    image:
-      "https://images.pexels.com/photos/136872/pexels-photo-136872.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    specs: {
-      seats: 5,
-      transmission: "Auto",
-      fuel: "Diesel",
-      airbags: 10,
-      age: 25,
-    },
-  },
-  {
-    name: "Aston Martin DBX",
-    price: 6500,
-    category: "SUV",
-    image:
-      "https://images.pexels.com/photos/3729464/pexels-photo-3729464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    specs: {
-      seats: 5,
-      transmission: "Auto",
-      fuel: "Petrol",
-      airbags: 8,
-      age: 25,
-    },
-  },
-  {
-    name: "Bugatti Mistral W16",
-    price: 8000,
-    category: "SPORTS",
-    image:
-      "https://images.pexels.com/photos/17096537/pexels-photo-17096537/free-photo-of-bugatti-mistral-in-the-desert.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    specs: {
-      seats: 2,
-      transmission: "Auto",
-      fuel: "Petrol",
-      airbags: 2,
-      age: 25,
-    },
-  },
-  {
-    name: "Rolls Royce Ghost",
-    price: 4000,
-    category: "SEDANS",
-    image:
-      "https://images.pexels.com/photos/3766111/pexels-photo-3766111.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    specs: {
-      seats: 5,
-      transmission: "Auto",
-      fuel: "Petrol",
-      airbags: 12,
-      age: 30,
-    },
-  },
-  {
-    name: "Tesla Model S Plaid",
-    price: 2500,
-    category: "SEDANS",
-    image:
-      "https://images.pexels.com/photos/112460/pexels-photo-112460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    specs: {
-      seats: 5,
-      transmission: "Auto",
-      fuel: "EV",
-      airbags: 8,
-      age: 25,
-    },
-  },
-  {
-    name: "Porsche 911 GT3",
-    price: 3800,
-    category: "SPORTS",
-    image:
-      "https://images.pexels.com/photos/16334698/pexels-photo-16334698/free-photo-of-porsche-911-gt3-in-mountains.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    specs: {
-      seats: 2,
-      transmission: "Manual",
-      fuel: "Petrol",
-      airbags: 4,
-      age: 25,
-    },
-  },
-];
-
 const LuxuryCarFleet: React.FC = () => {
+  const { showSpinner, hideSpinner } = useGlobalContext();
   const [tabList, setTabList] = useState(initialTabList);
-  const [carList, setCarList] = useState<VehicleCardType[]>(initialCarListData);
-  const [showMore, setShowMore] = useState<boolean>(false)
+  const [carList, setCarList] = useState<Car[]>([]);
+  const [showMore, setShowMore] = useState<boolean>(false);
+
+  // Function to fetch all cars data
+  const fetchCarsData = async () => {
+    showSpinner();
+    try {
+      const data = await carService.getAllCars();
+      setCarList(data);
+    } catch (err) {
+      console.log("Failed to load products.", err);
+    } finally {
+      hideSpinner();
+    }
+  };
 
   // Temporary setting the car list once component mounts
   useEffect(() => {
-    setCarList(initialCarListData)
-  }, [])
+    fetchCarsData()
+    // setCarList(initialCarListData)
+  }, []);
 
   // Function to apply active class
   const getClassNameForTabSelectionStatus = (tabValue: string) => {
@@ -172,8 +74,10 @@ const LuxuryCarFleet: React.FC = () => {
 
   // Function display or hide vehicle card based on number of cards to display
   const getClassNameForVehicleCardDisplay = (count: number) => {
-    return !showMore && count > INITIAL_DISPLAY_CAR_FLEET_VEHICLES ? "hidden" : ""
-  }
+    return !showMore && count > INITIAL_DISPLAY_CAR_FLEET_VEHICLES
+      ? "hidden"
+      : "";
+  };
 
   const activeCategory = tabList.find((tab) => tab.isActive)?.value || "";
 
@@ -219,11 +123,23 @@ const LuxuryCarFleet: React.FC = () => {
           {/* <!-- Car cards will be injected here by JavaScript --> */}
           {activeCategory === "ALL"
             ? carList.map((car, idx) => {
-                return <VehicleCard key={`${car.category}-${car.name}`} customClassName={getClassNameForVehicleCardDisplay(idx + 1)} {...car} />;
+                return (
+                  <VehicleCard
+                    key={`${car.carType}-${car.model}`}
+                    customClassName={getClassNameForVehicleCardDisplay(idx + 1)}
+                    {...car}
+                  />
+                );
               })
             : carList
-                .filter((car) => car.category === activeCategory)
-                .map((car, idx) => <VehicleCard key={`${car.category}-${car.name}`} customClassName={getClassNameForVehicleCardDisplay(idx + 1)} {...car} />)}
+                .filter((car) => car.carType === activeCategory)
+                .map((car, idx) => (
+                  <VehicleCard
+                    key={`${car.carType}-${car.model}`}
+                    customClassName={getClassNameForVehicleCardDisplay(idx + 1)}
+                    {...car}
+                  />
+                ))}
         </div>
 
         {/* Load More Button */}
@@ -233,7 +149,7 @@ const LuxuryCarFleet: React.FC = () => {
             id="load-more-btn"
             className="bg-brand-dark text-white font-semibold py-3 px-8 rounded-full hover:bg-black transition-colors duration-300"
           >
-            {showMore ? "Show Less": "Load More"}
+            {showMore ? "Show Less" : "Load More"}
           </button>
         </div>
       </div>
