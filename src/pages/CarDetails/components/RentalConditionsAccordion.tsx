@@ -1,5 +1,5 @@
 import React from "react";
-import useAccordion from "../hooks/useAccordion";
+import useAccordion from "../../../hooks/useAccordion";
 
 type RentalConditionAccordionProps = {
   rentalConditions: {
