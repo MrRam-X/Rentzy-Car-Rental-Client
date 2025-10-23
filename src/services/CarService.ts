@@ -56,8 +56,23 @@ const getAllCarServices = async (params?: QueryParams): Promise<CarService[]> =>
   }
 };
 
+/**
+ * Fetches particular car service details.
+ * @returns A promise that resolves to an Car Service object.
+ */
+const getCarServiceDetails = async (id: string): Promise<CarService> => {
+  try {
+    const response = await apiClient.get<CarService>(`/${SERVICES}/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching Car Service details with id: ${id}`, error);
+    throw new Error("Failed to fetch Car Service details");
+  }
+};
+
 export const carService = {
   getAllCars,
   getCarDetails,
   getAllCarServices,
+  getCarServiceDetails,
 };

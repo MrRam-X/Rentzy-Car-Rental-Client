@@ -7,6 +7,7 @@ import {
 } from "react";
 import Spinner from "../components/spinner/Spinner";
 import { ToasterContainer } from "../components/toast/Toaster";
+import type { CarService } from "../types/CarService";
 
 export type ToastType = "success" | "error" | "info" | "warning";
 
@@ -25,6 +26,8 @@ interface GlobalContextType {
   addToast: (title: string, message: string, type: ToastType) => void;
   showSpinner: () => void;
   hideSpinner: () => void;
+  carServicesList: CarService[];
+  updateCarServiceList: (serviceList: CarService[]) => void
 }
 
 const GlobalContext = createContext<GlobalContextType | undefined>(undefined);
@@ -34,6 +37,7 @@ export const GlobalContextProvider: React.FC<GlobalContextProviderProps> = ({
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [toasts, setToasts] = useState<ToastProps[]>([]);
+  const [carServicesList, setCarServicesList] = useState<CarService[]>([])
 
   const addToast = (title: string, message: string, type: ToastType) => {
     const id = crypto.randomUUID();
@@ -49,6 +53,8 @@ export const GlobalContextProvider: React.FC<GlobalContextProviderProps> = ({
     );
   };
 
+  const updateCarServiceList = (serviceList: CarService[]) => setCarServicesList([...serviceList])
+
   const showSpinner = () => setIsLoading(true);
   const hideSpinner = () => setIsLoading(false);
 
@@ -57,8 +63,10 @@ export const GlobalContextProvider: React.FC<GlobalContextProviderProps> = ({
       addToast,
       showSpinner,
       hideSpinner,
+      carServicesList,
+      updateCarServiceList
     }),
-    []
+    [carServicesList]
   );
 
   return (
