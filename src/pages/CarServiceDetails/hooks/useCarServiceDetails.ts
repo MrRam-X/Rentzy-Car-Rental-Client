@@ -13,6 +13,7 @@ const useCarServiceDetails = () => {
   const { serviceId } = useParams<RouteParams>();
   const [carServiceDetailsData, setCarServiceDetailsData] =
     useState<CarService>({} as CarService);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const fetchCarServiceDetails = async (serviceId: string) => {
     showSpinner();
@@ -26,13 +27,37 @@ const useCarServiceDetails = () => {
     }
   };
 
+  const onModalOpen = () => {
+    setIsModalOpen(true);
+  };
+
+  const onModalClose = () => {
+    setIsModalOpen(false);
+  };
+
+  const cancelButtonHandler = () => {
+    onModalClose();
+  };
+
+  const submitButtonHandler = () => {
+    onModalClose();
+  };
+
   useEffect(() => {
     if (serviceId) {
       fetchCarServiceDetails(serviceId);
     }
   }, [serviceId]);
 
-  return { carServiceDetailsData, carServicesList }
+  return {
+    carServiceDetailsData,
+    carServicesList,
+    isModalOpen,
+    onModalOpen,
+    onModalClose,
+    cancelButtonHandler,
+    submitButtonHandler,
+  };
 };
 
 export default useCarServiceDetails;

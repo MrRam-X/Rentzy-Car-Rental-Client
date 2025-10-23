@@ -2,9 +2,18 @@ import React, { Fragment } from "react";
 import useCarServiceDetails from "./hooks/useCarServiceDetails";
 import { getActiveAccordionClass } from "../../utils/commonUtils";
 import { Link } from "react-router-dom";
+import BookServiceSection from "./components/BookServiceSection";
 
 const CarServiceDetails: React.FC = () => {
-  const { carServiceDetailsData, carServicesList } = useCarServiceDetails();
+  const {
+    carServiceDetailsData,
+    carServicesList,
+    isModalOpen,
+    onModalOpen,
+    onModalClose,
+    cancelButtonHandler,
+    submitButtonHandler,
+  } = useCarServiceDetails();
 
   return (
     <main className="font-outfit">
@@ -37,6 +46,7 @@ const CarServiceDetails: React.FC = () => {
 
             {/* Rent Now Button */}
             <button
+              onClick={onModalOpen}
               id="open-booking-modal"
               className="w-full sm:w-auto flex items-center justify-center gap-3 border-2 border-white text-white py-4 px-8 rounded-full transition-all duration-300 ease-in-out hover:bg-brand-gold hover:text-black hover:border-brand-gold hover:-translate-y-1"
             >
@@ -65,9 +75,7 @@ const CarServiceDetails: React.FC = () => {
       <section className="py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-y-12 lg:gap-x-12">
-            {/* ============================================= */}
             {/* LEFT COLUMN: Service Details */}
-            {/* ============================================= */}
             <div className="lg:col-span-3">
               <p className="mt-6 text-gray-500 text-lg leading-8 font-light">
                 {carServiceDetailsData?.serviceDescription}
@@ -121,9 +129,7 @@ const CarServiceDetails: React.FC = () => {
               </ul>
             </div>
 
-            {/* ============================================= */}
             {/* RIGHT COLUMN: All Services Sidebar */}
-            {/* ============================================= */}
             <div className="lg:col-span-2">
               <div className="bg-gray-100 rounded-3xl overflow-hidden shadow-lg">
                 {/* TWEAK: Gold price header */}
@@ -176,9 +182,7 @@ const CarServiceDetails: React.FC = () => {
         </div>
       </section>
 
-      {/* ================================================================= */}
       {/* SECTION: RENTAL CONDITIONS ACCORDION */}
-      {/* ================================================================= */}
       <section id="rental-conditions" className="py-10 mb-10">
         <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div id="accordion-container" className="space-y-4">
@@ -225,6 +229,14 @@ const CarServiceDetails: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Service Booking Section */}
+      <BookServiceSection 
+        isModalOpen={isModalOpen}
+        onModalClose={onModalClose}
+        cancelButtonHandler={cancelButtonHandler}
+        submitButtonHandler={submitButtonHandler}
+      />
     </main>
   );
 };
