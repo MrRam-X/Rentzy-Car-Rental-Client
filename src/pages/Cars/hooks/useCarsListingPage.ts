@@ -14,7 +14,7 @@ const useCarsListingPage = () => {
         const data = await carService.getAllCars();
         setCarsApiData(data);
       } catch (err) {
-        console.log("Failed to load products.", err);
+        console.log("Failed to load cars.", err);
       } finally {
         hideSpinner();
       }

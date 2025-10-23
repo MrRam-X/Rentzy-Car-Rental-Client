@@ -12,6 +12,7 @@ const About = lazy(() => import("./pages/About"));
 const Cars = lazy(() => import("./pages/Cars"));
 const Services = lazy(() => import("./pages/CarServices"));
 const CarDetails = lazy(() => import("./pages/CarDetails"));
+const CarServiceDetails = lazy(() => import("./pages/CarServiceDetails"));
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 const BASE_IMAGE_URL = import.meta.env.VITE_APP_IMAGE_BASE_URL;
@@ -19,6 +20,7 @@ const API_URL = `${BASE_URL}/api/v1`;
 
 const API_ROUTE_NAMES = {
   CARS: "cars",
+  SERVICES: "services"
 };
 
 const SPORTS_IMAGE_URL = `${BASE_IMAGE_URL}/Sports`;
@@ -50,6 +52,7 @@ const APP_ROUTES: AppRoute[] = [
   { path: "/cars", Component: Cars },
   { path: "/cars/:carId", Component: CarDetails },
   { path: "/services", Component: Services },
+  { path: "/services/:serviceId", Component: CarServiceDetails },
 ];
 
 const INITIAL_DISPLAY_CAR_FLEET_VEHICLES = 6;
