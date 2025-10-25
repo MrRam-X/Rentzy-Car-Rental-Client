@@ -74,6 +74,7 @@ const AboutUsSection: React.FC = () => {
             customClassName="inline-flex items-center font-medium"
             linkTitle="Read More"
             iconElementName="RIGHT_V_ARROW"
+            redirectUrl={"/about"}
           />
         </div>
 

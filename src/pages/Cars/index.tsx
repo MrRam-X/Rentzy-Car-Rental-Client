@@ -206,8 +206,8 @@ const Cars: React.FC = () => {
 
             {/* Cars Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {carsApiData.length > 0 && carsApiData.map((car) => {
-                return <CarsCard {...car}/>
+              {carsApiData.length > 0 && carsApiData.map((car, idx) => {
+                return <CarsCard key={`${idx}-${car._id}`} {...car}/>
               })}
             </div>
 

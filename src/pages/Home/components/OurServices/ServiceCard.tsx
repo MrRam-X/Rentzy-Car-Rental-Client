@@ -1,11 +1,16 @@
 import React from "react";
 import type { ServiceCardType } from "../../types";
+import { Link } from "react-router-dom";
 
-const ServiceCard: React.FC<ServiceCardType> = ({id, imgSrc, title}) => {
+type ServiceCardProps = ServiceCardType & { 
+  serviceId: string
+}
+
+const ServiceCard: React.FC<ServiceCardProps> = ({id, imgSrc, title, serviceId}) => {
   return (
     <div className="w-full lg:w-1/3 flex-shrink-0 px-4">
-      <a
-        href="#"
+      <Link
+        to={`/services/${serviceId}`}
         className="service-card group relative block rounded-3xl overflow-hidden shadow-lg"
       >
         <img
@@ -22,7 +27,7 @@ const ServiceCard: React.FC<ServiceCardType> = ({id, imgSrc, title}) => {
             <h3 className="text-white font-bold text-xl">{title}</h3>
           </div>
         </div>
-      </a>
+      </Link>
     </div>
   );
 };

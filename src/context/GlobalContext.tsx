@@ -1,6 +1,7 @@
 import {
   createContext,
   useContext,
+  useEffect,
   useMemo,
   useState,
   type ReactNode,
@@ -8,6 +9,7 @@ import {
 import Spinner from "../components/spinner/Spinner";
 import { ToasterContainer } from "../components/toast/Toaster";
 import type { CarService } from "../types/CarService";
+import { carService } from "../services/CarService";
 
 export type ToastType = "success" | "error" | "info" | "warning";
 
@@ -27,7 +29,7 @@ interface GlobalContextType {
   showSpinner: () => void;
   hideSpinner: () => void;
   carServicesList: CarService[];
-  updateCarServiceList: (serviceList: CarService[]) => void
+  updateCarServiceList: (serviceList: CarService[]) => void;
 }
 
 const GlobalContext = createContext<GlobalContextType | undefined>(undefined);
@@ -37,7 +39,7 @@ export const GlobalContextProvider: React.FC<GlobalContextProviderProps> = ({
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [toasts, setToasts] = useState<ToastProps[]>([]);
-  const [carServicesList, setCarServicesList] = useState<CarService[]>([])
+  const [carServicesList, setCarServicesList] = useState<CarService[]>([]);
 
   const addToast = (title: string, message: string, type: ToastType) => {
     const id = crypto.randomUUID();
@@ -53,7 +55,24 @@ export const GlobalContextProvider: React.FC<GlobalContextProviderProps> = ({
     );
   };
 
-  const updateCarServiceList = (serviceList: CarService[]) => setCarServicesList([...serviceList])
+  const updateCarServiceList = (serviceList: CarService[]) =>
+    setCarServicesList([...serviceList]);
+
+  const fetchCarServicesData = async () => {
+    showSpinner();
+    try {
+      const data = await carService.getAllCarServices();
+      setCarServicesList(data);
+    } catch (err) {
+      console.log("Failed to load car services.", err);
+    } finally {
+      hideSpinner();
+    }
+  };
+
+  useEffect(() => {
+    fetchCarServicesData()
+  }, [])
 
   const showSpinner = () => setIsLoading(true);
   const hideSpinner = () => setIsLoading(false);
@@ -64,7 +83,7 @@ export const GlobalContextProvider: React.FC<GlobalContextProviderProps> = ({
       showSpinner,
       hideSpinner,
       carServicesList,
-      updateCarServiceList
+      updateCarServiceList,
     }),
     [carServicesList]
   );

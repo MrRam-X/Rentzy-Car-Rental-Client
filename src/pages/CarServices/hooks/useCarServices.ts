@@ -4,15 +4,18 @@ import { useGlobalContext } from "../../../context/GlobalContext";
 import { carService } from "../../../services/CarService";
 
 const useCarServices = () => {
-  const { showSpinner, hideSpinner, updateCarServiceList } = useGlobalContext();
-  const [carServiceData, setCarServiceData] = useState<CarService[]>([]);
+  const { showSpinner, hideSpinner, updateCarServiceList, carServicesList } =
+    useGlobalContext();
+  const [carServiceData, setCarServiceData] = useState<CarService[]>([
+    ...carServicesList,
+  ]);
 
   const fetchCarServicesData = async () => {
     showSpinner();
     try {
       const data = await carService.getAllCarServices();
       setCarServiceData(data);
-      updateCarServiceList(data)
+      updateCarServiceList(data);
     } catch (err) {
       console.log("Failed to load car services.", err);
     } finally {
@@ -21,10 +24,12 @@ const useCarServices = () => {
   };
 
   useEffect(() => {
-    fetchCarServicesData()
-  }, [])
+    if (carServicesList.length === 0) {
+      fetchCarServicesData();
+    }
+  }, []);
 
-  return { carServiceData }
+  return { carServiceData };
 };
 
 export default useCarServices;

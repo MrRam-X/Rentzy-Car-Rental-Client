@@ -89,7 +89,7 @@ const CarsCard: React.FC<CarsCardProps> = ({
               >
                 <path d="M8 5a1 1 0 100 2h4a1 1 0 100-2H8z" />
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M3 3a1 1 0 011-1h12a1 1 0 011 1v1h-2V3a1 1 0 00-1-1H5a1 1 0 00-1 1v1H3V3zM3 7v10a2 2 0 002 2h10a2 2 0 002-2V7H3zm2-1h10v1H5V6z"
                   clipRule="evenodd"
                 />

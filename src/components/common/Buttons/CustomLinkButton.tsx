@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 type CustomLinkButtonProps = {
   borderClassName: string;
@@ -10,6 +11,7 @@ type CustomLinkButtonProps = {
   linkTitle: string;
   iconFirst?: boolean;
   iconElementName: string;
+  redirectUrl?: string
 };
 
 const SVG_ELEMENTS = {
@@ -82,6 +84,7 @@ const CustomLinkButton: React.FC<CustomLinkButtonProps> = ({
   linkTitle,
   iconFirst = false,
   iconElementName,
+  redirectUrl,
 }) => {
   function getOrientation() {
     if (iconFirst) {
@@ -100,12 +103,12 @@ const CustomLinkButton: React.FC<CustomLinkButtonProps> = ({
     );
   }
   return (
-    <a
-      href="#"
+    <Link
+      to={redirectUrl || ""}
       className={`${customClassName} ${borderClassName} ${colorClassName} ${paddingClassName} ${hoverClassName} ${transitionClassName}`}
     >
       {getOrientation()}
-    </a>
+    </Link>
   );
 };
 

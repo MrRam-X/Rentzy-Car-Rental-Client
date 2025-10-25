@@ -27,7 +27,7 @@ const CarServiceDetails: React.FC = () => {
       {/* Service Details */}
       <CarServiceDetailsSection
         carServiceDetailsData={carServiceDetailsData}
-        carServicesList={carServicesList}
+        carServicesList={carServicesList || []}
       />
 
       {/* SECTION: RENTAL CONDITIONS ACCORDION */}
