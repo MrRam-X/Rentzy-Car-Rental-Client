@@ -29,9 +29,9 @@ const initialTabList = [
 ];
 
 const LuxuryCarFleet: React.FC = () => {
-  const { showSpinner, hideSpinner } = useGlobalContext();
+  const { showSpinner, hideSpinner, carsData } = useGlobalContext();
   const [tabList, setTabList] = useState(initialTabList);
-  const [carList, setCarList] = useState<Car[]>([]);
+  const [carList, setCarList] = useState<Car[]>([...carsData]);
   const [showMore, setShowMore] = useState<boolean>(false);
 
   // Function to fetch all cars data
@@ -49,7 +49,12 @@ const LuxuryCarFleet: React.FC = () => {
 
   // Temporary setting the car list once component mounts
   useEffect(() => {
-    fetchCarsData()
+    if(carsData && carsData.length > 0) {
+      setCarList([...carsData])
+    }
+    else {
+      fetchCarsData();
+    }
     // setCarList(initialCarListData)
   }, []);
 

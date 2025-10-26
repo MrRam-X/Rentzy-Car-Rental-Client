@@ -4,8 +4,8 @@ import { useGlobalContext } from "../../../context/GlobalContext";
 import { carService } from "../../../services/CarService";
 
 const useCarsListingPage = () => {
-  const { showSpinner, hideSpinner } = useGlobalContext();
-  const [carsApiData, setCarsApiData] = useState<Car[]>([]);
+  const { showSpinner, hideSpinner, carsData } = useGlobalContext();
+  const [carsApiData, setCarsApiData] = useState<Car[]>([...carsData]);
 
   useEffect(() => {
     const fetchCarsData = async () => {
@@ -20,7 +20,13 @@ const useCarsListingPage = () => {
       }
     };
 
-    fetchCarsData();
+    if(carsData && carsData.length > 0) {
+      setCarsApiData([...carsData])
+    }
+    else {
+      fetchCarsData();
+    }
+
   }, []);
 
   return { carsApiData };

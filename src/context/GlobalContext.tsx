@@ -10,6 +10,7 @@ import Spinner from "../components/spinner/Spinner";
 import { ToasterContainer } from "../components/toast/Toaster";
 import type { CarService } from "../types/CarService";
 import { carService } from "../services/CarService";
+import type { Car } from "../types/Cars";
 
 export type ToastType = "success" | "error" | "info" | "warning";
 
@@ -25,10 +26,11 @@ interface GlobalContextProviderProps {
 }
 
 interface GlobalContextType {
+  carServicesList: CarService[];
+  carsData: Car[];
   addToast: (title: string, message: string, type: ToastType) => void;
   showSpinner: () => void;
   hideSpinner: () => void;
-  carServicesList: CarService[];
   updateCarServiceList: (serviceList: CarService[]) => void;
 }
 
@@ -40,6 +42,7 @@ export const GlobalContextProvider: React.FC<GlobalContextProviderProps> = ({
   const [isLoading, setIsLoading] = useState(false);
   const [toasts, setToasts] = useState<ToastProps[]>([]);
   const [carServicesList, setCarServicesList] = useState<CarService[]>([]);
+  const [carsData, setCarsData] = useState<Car[]>([]);
 
   const addToast = (title: string, message: string, type: ToastType) => {
     const id = crypto.randomUUID();
@@ -70,22 +73,36 @@ export const GlobalContextProvider: React.FC<GlobalContextProviderProps> = ({
     }
   };
 
+  const fetchCarsData = async () => {
+    showSpinner();
+    try {
+      const data = await carService.getAllCars();
+      setCarsData(data);
+    } catch (err) {
+      console.log("Failed to load cars.", err);
+    } finally {
+      hideSpinner();
+    }
+  };
+
   useEffect(() => {
-    fetchCarServicesData()
-  }, [])
+    fetchCarServicesData();
+    fetchCarsData();
+  }, []);
 
   const showSpinner = () => setIsLoading(true);
   const hideSpinner = () => setIsLoading(false);
 
   const value = useMemo(
     () => ({
+      carsData,
+      carServicesList,
       addToast,
       showSpinner,
       hideSpinner,
-      carServicesList,
       updateCarServiceList,
     }),
-    [carServicesList]
+    [carServicesList, carsData]
   );
 
   return (

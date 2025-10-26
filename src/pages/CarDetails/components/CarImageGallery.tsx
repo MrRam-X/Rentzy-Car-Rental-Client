@@ -42,9 +42,10 @@ const CarImageGallery: React.FC<CarImageGalleryProps> = ({
         >
           {/* Thumbnails will be populated here by JavaScript */}
           {imageGalleryUris.length > 0 &&
-            imageGalleryUris.map((item) => {
+            imageGalleryUris.map((item, idx) => {
               return (
                 <CarThumbnail
+                  key={`${idx}-${item}`}
                   carImageName={item}
                   brand={brand}
                   carType={carType}
