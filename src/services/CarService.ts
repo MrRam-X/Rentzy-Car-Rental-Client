@@ -2,6 +2,12 @@ import axios from "axios";
 import { API_URL, API_ROUTE_NAMES } from "../appConstant";
 import type { Car } from "../types/Cars";
 import type { CarService } from "../types/CarService";
+import type {
+  BookingOrderResponse,
+  BookingOrderPayload,
+  VerifyServiceBookingPayload,
+  VerifyServiceBookingResponse,
+} from "../types/commonTypes";
 
 type QueryParams = Record<string, string | number | boolean>;
 
@@ -12,7 +18,7 @@ const apiClient = axios.create({
   },
 });
 
-const { CARS, SERVICES } = API_ROUTE_NAMES;
+const { CARS, SERVICES, CREATE_BOOKING, VERIFY_PAYMENT } = API_ROUTE_NAMES;
 
 /**
  * Fetches a list of all cars.
@@ -46,9 +52,13 @@ const getCarDetails = async (id: string): Promise<Car> => {
  * Fetches a list of all car services.
  * @returns A promise that resolves to an array of Car Service objects.
  */
-const getAllCarServices = async (params?: QueryParams): Promise<CarService[]> => {
+const getAllCarServices = async (
+  params?: QueryParams
+): Promise<CarService[]> => {
   try {
-    const response = await apiClient.get<CarService[]>(`/${SERVICES}`, { params });
+    const response = await apiClient.get<CarService[]>(`/${SERVICES}`, {
+      params,
+    });
     return response.data;
   } catch (error) {
     console.error("Error fetching all Car Services:", error);
@@ -70,9 +80,49 @@ const getCarServiceDetails = async (id: string): Promise<CarService> => {
   }
 };
 
+/**
+ * Creates an order for booking a car service.
+ * @returns A promise that resolves to a Booking Order object.
+ */
+const createServiceBookingOrder = async (
+  payload: BookingOrderPayload
+): Promise<BookingOrderResponse> => {
+  try {
+    const response = await apiClient.post<BookingOrderResponse>(
+      `/${CREATE_BOOKING}`,
+      { ...payload }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error creating order:", error);
+    throw new Error("Failed to create order.");
+  }
+};
+
+/**
+ * Verifies payment status of the order for service booked.
+ * @returns A promise that resolves to a Booking Order object.
+ */
+const verifyServiceBookingPayment = async (
+  payload: VerifyServiceBookingPayload
+): Promise<VerifyServiceBookingResponse> => {
+  try {
+    const response = await apiClient.patch<VerifyServiceBookingResponse>(
+      `/${VERIFY_PAYMENT}`,
+      { ...payload }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error creating order:", error);
+    throw new Error("Failed to create order.");
+  }
+};
+
 export const carService = {
   getAllCars,
   getCarDetails,
   getAllCarServices,
   getCarServiceDetails,
+  createServiceBookingOrder,
+  verifyServiceBookingPayment,
 };

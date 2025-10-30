@@ -1,4 +1,5 @@
 import { lazy, type ComponentType } from "react";
+import { CarTypes } from "./types/commonTypes";
 
 export interface AppRoute {
   path: string;
@@ -16,11 +17,14 @@ const CarServiceDetails = lazy(() => import("./pages/CarServiceDetails"));
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 const BASE_IMAGE_URL = import.meta.env.VITE_APP_IMAGE_BASE_URL;
+const RAZORPAY_KEY_ID = import.meta.env.VITE_APP_RAZORPAY_KEY_ID
 const API_URL = `${BASE_URL}/api/v1`;
 
 const API_ROUTE_NAMES = {
   CARS: "cars",
-  SERVICES: "services"
+  SERVICES: "services",
+  CREATE_BOOKING: "bookings/create",
+  VERIFY_PAYMENT: "bookings/verify-payment"
 };
 
 const SPORTS_IMAGE_URL = `${BASE_IMAGE_URL}/Sports`;
@@ -57,6 +61,29 @@ const APP_ROUTES: AppRoute[] = [
 
 const INITIAL_DISPLAY_CAR_FLEET_VEHICLES = 6;
 
+const CAR_TYPES_OPTIONS = [
+  {
+    label: "EV",
+    value: CarTypes.Electric,
+  },
+  {
+    label: "Luxury",
+    value: CarTypes.Luxury,
+  },
+  {
+    label: "Sedans",
+    value: CarTypes.Sedan,
+  },
+  {
+    label: "Sports",
+    value: CarTypes.Sports,
+  },
+  {
+    label: "SUVS",
+    value: CarTypes.SUV,
+  },
+]
+
 export {
   APP_ROUTE_NAMES,
   APP_ROUTES,
@@ -64,4 +91,6 @@ export {
   API_URL,
   API_ROUTE_NAMES,
   CARS_IMAGE_URL,
+  CAR_TYPES_OPTIONS,
+  RAZORPAY_KEY_ID,
 };
