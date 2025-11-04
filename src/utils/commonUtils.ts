@@ -20,8 +20,14 @@ export function formatDateToYMD(date: Date = new Date()): string {
   return `${year}-${month}-${day}`;
 }
 
-export function getNextDate(date: Date = new Date()): Date {
+export function getNextDate(date: Date = new Date(), gapOfDays?: number): Date {
   const next = new Date(date);
-  next.setDate(next.getDate() + 1);
+  next.setDate(next.getDate() + Number(gapOfDays ? gapOfDays : 1));
   return next;
 }
+
+export const getNextYear = (date: Date = new Date()): Date => {
+  const next = new Date(date);
+  next.setFullYear(next.getFullYear() + 1);
+  return next;
+};

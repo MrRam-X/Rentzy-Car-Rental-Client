@@ -1,6 +1,13 @@
 import React from "react";
-import { formatDateToYMD, getNextDate } from "../../../utils/commonUtils";
-import { CAR_TYPES_OPTIONS } from "../../../appConstant";
+import {
+  formatDateToYMD,
+  getNextDate,
+  getNextYear,
+} from "../../../utils/commonUtils";
+import {
+  CAR_TYPES_OPTIONS,
+  MAX_RENT_PERIOD_IN_DAYS,
+} from "../../../appConstant";
 import type { BookingForm, OptionType } from "../../../types/commonTypes";
 
 type BookServiceFormProps = {
@@ -35,12 +42,13 @@ const BookServiceForm: React.FC<BookServiceFormProps> = ({
             htmlFor="from-date"
             className="block text-sm font-semibold text-gray-700 mb-1"
           >
-            From Date
+            From Date <span>*</span>
           </label>
           <input
             type="date"
             name="fromDate"
             min={formatDateToYMD(new Date())}
+            max={formatDateToYMD(getNextYear(new Date()))}
             value={formData.fromDate}
             onChange={onFormDataChange}
             id="from-date"
@@ -54,21 +62,27 @@ const BookServiceForm: React.FC<BookServiceFormProps> = ({
             htmlFor="to-date"
             className="block text-sm font-semibold text-gray-700 mb-1"
           >
-            To Date
+            To Date (max: 20 days) <span>*</span>
           </label>
           <input
             type="date"
             name="toDate"
+            disabled={!formData.fromDate}
             min={formatDateToYMD(
               getNextDate(
                 formData.fromDate ? new Date(formData.fromDate) : new Date()
               )
             )}
+            max={formatDateToYMD(
+              getNextDate(new Date(formData.fromDate), MAX_RENT_PERIOD_IN_DAYS)
+            )}
             value={formData.toDate}
             onChange={onFormDataChange}
             id="to-date"
             required
-            className="w-full bg-gray-100 rounded-lg border-transparent p-3 focus:outline-none focus:ring-2 focus:ring-brand-gold"
+            className={`w-full bg-gray-100 rounded-lg border-transparent p-3 focus:outline-none focus:ring-2 focus:ring-brand-gold ${
+              !formData.fromDate ? "cursor-not-allowed opacity-50" : ""
+            }`}
           />
         </div>
         {/* Full Name */}
@@ -77,7 +91,7 @@ const BookServiceForm: React.FC<BookServiceFormProps> = ({
             htmlFor="full-name"
             className="block text-sm font-semibold text-gray-700 mb-1"
           >
-            Full Name
+            Full Name <span>*</span>
           </label>
           <input
             type="text"
@@ -86,7 +100,7 @@ const BookServiceForm: React.FC<BookServiceFormProps> = ({
             onChange={onFormDataChange}
             id="full-name"
             required
-            placeholder="John Doe"
+            placeholder="Full name. e.g - Ram Prasad Baidya"
             className="w-full bg-gray-100 rounded-lg border-transparent p-3 focus:outline-none focus:ring-2 focus:ring-brand-gold"
           />
         </div>
@@ -96,7 +110,7 @@ const BookServiceForm: React.FC<BookServiceFormProps> = ({
             htmlFor="email"
             className="block text-sm font-semibold text-gray-700 mb-1"
           >
-            Email
+            Email <span>*</span>
           </label>
           <input
             type="email"
@@ -105,7 +119,7 @@ const BookServiceForm: React.FC<BookServiceFormProps> = ({
             onChange={onFormDataChange}
             id="email"
             required
-            placeholder="you@example.com"
+            placeholder="Email Address. e.g - you@example.com"
             className="w-full bg-gray-100 rounded-lg border-transparent p-3 focus:outline-none focus:ring-2 focus:ring-brand-gold"
           />
         </div>
@@ -115,7 +129,7 @@ const BookServiceForm: React.FC<BookServiceFormProps> = ({
             htmlFor="phone-number"
             className="block text-sm font-semibold text-gray-700 mb-1"
           >
-            Phone Number
+            Phone Number <span>*</span>
           </label>
           <input
             type="tel"
@@ -124,7 +138,7 @@ const BookServiceForm: React.FC<BookServiceFormProps> = ({
             onChange={onFormDataChange}
             id="phone-number"
             required
-            placeholder="+91-2223334448"
+            placeholder="Mobile number. e.g - +912223334448"
             className="w-full bg-gray-100 rounded-lg border-transparent p-3 focus:outline-none focus:ring-2 focus:ring-brand-gold"
           />
         </div>
@@ -134,7 +148,7 @@ const BookServiceForm: React.FC<BookServiceFormProps> = ({
             htmlFor="service-type"
             className="block text-sm font-semibold text-gray-700 mb-1"
           >
-            Service Type
+            Service Type <span>*</span>
           </label>
           <select
             name="serviceType"
@@ -160,7 +174,7 @@ const BookServiceForm: React.FC<BookServiceFormProps> = ({
             htmlFor="pickup-location"
             className="block text-sm font-semibold text-gray-700 mb-1"
           >
-            Pickup Location
+            Pickup Location <span>*</span>
           </label>
           <input
             type="text"
@@ -169,7 +183,7 @@ const BookServiceForm: React.FC<BookServiceFormProps> = ({
             onChange={onFormDataChange}
             id="pickup-location"
             required
-            placeholder="Enter address or airport name"
+            placeholder="Pickup Location. e.g - Area, District, State, Country, Pin"
             className="w-full bg-gray-100 rounded-lg border-transparent p-3 focus:outline-none focus:ring-2 focus:ring-brand-gold"
           />
         </div>
@@ -186,12 +200,18 @@ const BookServiceForm: React.FC<BookServiceFormProps> = ({
             value={formData.carType}
             onChange={onFormDataChange}
             id="car-type"
-            className="w-full bg-gray-100 rounded-lg border-transparent p-3 focus:outline-none focus:ring-2 focus:ring-brand-gold appearance-none"
+            className={`w-full bg-gray-100 rounded-lg border-transparent p-3 focus:outline-none focus:ring-2 focus:ring-brand-gold appearance-none ${
+              !formData.carType ? "text-gray-400" : ""
+            }`}
           >
             <option value="">Any</option>
             {CAR_TYPES_OPTIONS.map((item) => {
               return (
-                <option key={item.value} value={item.value}>
+                <option
+                  key={item.value}
+                  value={item.value}
+                  className="text-gray-700"
+                >
                   {item.label}
                 </option>
               );
@@ -211,12 +231,18 @@ const BookServiceForm: React.FC<BookServiceFormProps> = ({
             value={formData.carBrand}
             onChange={onFormDataChange}
             id="car-brand"
-            className="w-full bg-gray-100 rounded-lg border-transparent p-3 focus:outline-none focus:ring-2 focus:ring-brand-gold appearance-none"
+            className={`w-full bg-gray-100 rounded-lg border-transparent p-3 focus:outline-none focus:ring-2 focus:ring-brand-gold appearance-none ${
+              !formData.carBrand ? "text-gray-400" : ""
+            }`}
           >
             <option value="">Any</option>
             {carBrandList.map((item) => {
               return (
-                <option key={item.value} value={item.value}>
+                <option
+                  key={item.value}
+                  value={item.value}
+                  className="text-gray-700"
+                >
                   {item.label}
                 </option>
               );
@@ -236,12 +262,18 @@ const BookServiceForm: React.FC<BookServiceFormProps> = ({
             value={formData.carModel}
             onChange={onFormDataChange}
             id="car-Model"
-            className="w-full bg-gray-100 rounded-lg border-transparent p-3 focus:outline-none focus:ring-2 focus:ring-brand-gold appearance-none"
+            className={`w-full bg-gray-100 rounded-lg border-transparent p-3 focus:outline-none focus:ring-2 focus:ring-brand-gold appearance-none ${
+              !formData.carModel ? "text-gray-400" : ""
+            }`}
           >
             <option value="">Any</option>
             {carModelList.map((item) => {
               return (
-                <option key={item.value} value={item.value}>
+                <option
+                  key={item.value}
+                  value={item.value}
+                  className="text-gray-700"
+                >
                   {item.label}
                 </option>
               );

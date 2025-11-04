@@ -5,7 +5,12 @@ import { useParams } from "react-router-dom";
 import { carService } from "../../../services/CarService";
 import type { BookingForm, OptionType } from "../../../types/commonTypes";
 import type { Car } from "../../../types/Cars";
-import { RAZORPAY_KEY_ID } from "../../../appConstant";
+import { MAX_RENT_PERIOD_IN_DAYS, RAZORPAY_KEY_ID } from "../../../appConstant";
+import {
+  formatDateToYMD,
+  getNextDate,
+  getNextYear,
+} from "../../../utils/commonUtils";
 
 type RouteParams = {
   serviceId: string;
@@ -31,8 +36,6 @@ const useCarServiceDetails = (
   carServicesList: CarService[],
   carsData: Car[]
 ) => {
-  // const { addToast, showSpinner, hideSpinner, carServicesList, carsData } =
-  //   useGlobalContext();
   const { serviceId } = useParams<RouteParams>();
   const [carServiceDetailsData, setCarServiceDetailsData] =
     useState<CarService>({} as CarService);
@@ -58,13 +61,6 @@ const useCarServiceDetails = (
     setIsModalOpen(false);
   };
 
-  /* TODO: Need to implement this behavior later */
-  // const onModalBlur = () => {
-  //   if(!isFormDirty) {
-  //     setIsModalOpen(false)
-  //   }
-  // }
-
   const [formData, setFormData] = useState<BookingForm>(initialFormData);
   const [isFormDirty, setIsFormDirty] = useState<boolean>(false);
 
@@ -74,13 +70,140 @@ const useCarServiceDetails = (
       | React.ChangeEvent<HTMLSelectElement>
   ) => {
     const { name, value } = event.target;
-
+    console.log({ name, value })
     setFormData({
       ...formData,
       [name]: value,
     });
 
     if (!isFormDirty) setIsFormDirty(true);
+  };
+
+  // Form Validation
+  const validateFormFields = () => {
+    const errorsList: { name: string; errorMessage: string }[] = [];
+    const {
+      fromDate,
+      toDate,
+      email,
+      fullName,
+      phoneNumber,
+      pickupLocation,
+      serviceType,
+    } = formData;
+
+    if (
+      !fromDate.trim() ||
+      !toDate.trim() ||
+      !email.trim() ||
+      !fullName.trim() ||
+      !phoneNumber.trim() ||
+      !pickupLocation.trim() ||
+      !serviceType.trim()
+    ) {
+      errorsList.push({
+        name: "All",
+        errorMessage: "Required fields can't be empty",
+      });
+    } else {
+      // Email Validation
+      if (email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const isEmailValid = emailRegex.test(email);
+        if (!isEmailValid) {
+          errorsList.push({
+            name: "Email",
+            errorMessage: "Email is not valid",
+          });
+        }
+      }
+
+      // From Date & To Date Validation
+      if (fromDate && toDate) {
+        const fromDateObj = new Date(fromDate);
+        const toDateObj = new Date(toDate);
+        if (fromDateObj > getNextYear(new Date()) || fromDateObj.getDate() < new Date().getDate()) {
+          errorsList.push({
+            name: "From Date",
+            errorMessage: `From Date must be within ${formatDateToYMD(
+              new Date()
+            )} and ${formatDateToYMD(getNextYear(new Date()))}`,
+          });
+        }
+
+        if (
+          toDateObj > getNextDate(fromDateObj, MAX_RENT_PERIOD_IN_DAYS) ||
+          toDateObj < getNextDate(fromDateObj)
+        ) {
+          errorsList.push({
+            name: "To Date",
+            errorMessage: `To Date must be within ${formatDateToYMD(
+              getNextDate(fromDateObj)
+            )} and ${formatDateToYMD(
+              getNextDate(fromDateObj, MAX_RENT_PERIOD_IN_DAYS)
+            )}`,
+          });
+        }
+      }
+
+      // Full Name Validation
+      if (fullName) {
+        const fullNameRegex = /^(?:[A-Z][a-z]*)(?: [A-Z][a-z]*)*$/;
+        const isFullNameValid = fullNameRegex.test(fullName);
+
+        if (fullName.length > 20 || !isFullNameValid) {
+          errorsList.push({
+            name: "Full Name",
+            errorMessage:
+              "Full Name must be under 20 chars and follow '{first} {middle(optional)} {last}' naming pattern",
+          });
+        }
+      }
+
+      // Mobile Number Validation
+      if (phoneNumber) {
+        const phoneNumberRegex = /^(?:\+91)?[0-9]{10}$/; // With Indian Dial Code (+91)
+        const isPhoneNumberValid = phoneNumberRegex.test(phoneNumber);
+
+        if (!isPhoneNumberValid) {
+          errorsList.push({
+            name: "Phone Number",
+            errorMessage:
+              "Phone Number should be either 10 digits or followed by dial code (+91)",
+          });
+        }
+      }
+
+      // Pickup Location Validation
+      if (pickupLocation) {
+        // Matches: "Area, District, State, Country, 123456"
+        const pickupAddressRegex =
+          /^([A-Za-z ]+), ([A-Za-z ]+), ([A-Za-z ]+), ([A-Za-z ]+), (\d{6})$/;
+        const isPickupAddressValid = pickupAddressRegex.test(pickupLocation);
+
+        if (!isPickupAddressValid) {
+          errorsList.push({
+            name: "Pickup Location",
+            errorMessage:
+              "Pickup location is not valid. It should follow 'Area, District, State, Country, Pin code' pattern",
+          });
+        }
+      }
+
+      // Service Type Validation
+      if (serviceType) {
+        const isServiceIdExist = carServicesList.find(
+          (service) => service._id === serviceType
+        );
+        if (!isServiceIdExist) {
+          errorsList.push({
+            name: "Service Type",
+            errorMessage: "No car service exists of the provided type",
+          });
+        }
+      }
+    }
+    return errorsList;
   };
 
   const formSubmitHandler = async () => {
@@ -97,14 +220,22 @@ const useCarServiceDetails = (
       carType,
     } = formData;
     // Before calling api validate the form fields
+    const errorList = validateFormFields()
+
+    if (errorList.length > 0) {
+      errorList.forEach((errorItem) => {
+        addToast(`Error: ${errorItem.name}`, errorItem.errorMessage, "error")
+      })
+      return
+    }
     if (
-      fromDate &&
-      toDate &&
-      email &&
-      fullName &&
-      phoneNumber &&
-      pickupLocation &&
-      serviceType
+      fromDate.trim() &&
+      toDate.trim() &&
+      email.trim() &&
+      fullName.trim() &&
+      phoneNumber.trim() &&
+      pickupLocation.trim() &&
+      serviceType.trim()
     ) {
       showSpinner();
       try {
@@ -137,7 +268,9 @@ const useCarServiceDetails = (
         const bookingOrderResponse = await carService.createServiceBookingOrder(
           createOrderPayload
         );
-        console.log({ bookingOrderResponse });
+        if (bookingOrderResponse.statusCode === 201) {
+          addToast("Success", "Booking Order has been created", "success")
+        }
         // Load Razorpay script
         const script = document.createElement("script");
         script.src = "https://checkout.razorpay.com/v1/checkout.js";
@@ -165,9 +298,9 @@ const useCarServiceDetails = (
               });
 
               if (verifyRes.success) {
-                alert("Payment successful!");
+                addToast("Success", "Payment successful!", "success")
               } else {
-                alert("Payment verification failed");
+                addToast("Error", "Payment verification failed", "error")
               }
             },
             prefill: {
@@ -246,6 +379,7 @@ const useCarServiceDetails = (
   useEffect(() => {
     if (serviceId) {
       fetchCarServiceDetails(serviceId);
+      setFormData({...formData, serviceType: serviceId})
     }
   }, [serviceId]);
 
