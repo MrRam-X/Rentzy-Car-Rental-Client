@@ -70,7 +70,7 @@ const useCarServiceDetails = (
       | React.ChangeEvent<HTMLSelectElement>
   ) => {
     const { name, value } = event.target;
-    console.log({ name, value })
+
     setFormData({
       ...formData,
       [name]: value,
@@ -122,7 +122,10 @@ const useCarServiceDetails = (
       if (fromDate && toDate) {
         const fromDateObj = new Date(fromDate);
         const toDateObj = new Date(toDate);
-        if (fromDateObj > getNextYear(new Date()) || fromDateObj.getDate() < new Date().getDate()) {
+        if (
+          fromDateObj > getNextYear(new Date()) ||
+          fromDateObj.getDate() < new Date().getDate()
+        ) {
           errorsList.push({
             name: "From Date",
             errorMessage: `From Date must be within ${formatDateToYMD(
@@ -220,13 +223,13 @@ const useCarServiceDetails = (
       carType,
     } = formData;
     // Before calling api validate the form fields
-    const errorList = validateFormFields()
+    const errorList = validateFormFields();
 
     if (errorList.length > 0) {
       errorList.forEach((errorItem) => {
-        addToast(`Error: ${errorItem.name}`, errorItem.errorMessage, "error")
-      })
-      return
+        addToast(`Error: ${errorItem.name}`, errorItem.errorMessage, "error");
+      });
+      return;
     }
     if (
       fromDate.trim() &&
@@ -269,7 +272,7 @@ const useCarServiceDetails = (
           createOrderPayload
         );
         if (bookingOrderResponse.statusCode === 201) {
-          addToast("Success", "Booking Order has been created", "success")
+          addToast("Success", "Booking Order has been created", "success");
         }
         // Load Razorpay script
         const script = document.createElement("script");
@@ -298,9 +301,23 @@ const useCarServiceDetails = (
               });
 
               if (verifyRes.success) {
-                addToast("Success", "Payment successful!", "success")
+                addToast("Success", "Payment successful!", "success");
+                // 4. Fetch receipt PDF from backend
+                const blob = await carService.getServiceBookingReceipt(
+                  response.razorpay_order_id
+                );
+
+                // 5. Trigger download in browser
+                const url = window.URL.createObjectURL(blob);
+                const link = document.createElement("a");
+                link.href = url;
+                link.download = `receipt-${response.razorpay_order_id}.pdf`;
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+                window.URL.revokeObjectURL(url);
               } else {
-                addToast("Error", "Payment verification failed", "error")
+                addToast("Error", "Payment verification failed", "error");
               }
             },
             prefill: {
@@ -379,7 +396,7 @@ const useCarServiceDetails = (
   useEffect(() => {
     if (serviceId) {
       fetchCarServiceDetails(serviceId);
-      setFormData({...formData, serviceType: serviceId})
+      setFormData({ ...formData, serviceType: serviceId });
     }
   }, [serviceId]);
 

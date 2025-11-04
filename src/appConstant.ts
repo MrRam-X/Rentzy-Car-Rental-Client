@@ -24,7 +24,8 @@ const API_ROUTE_NAMES = {
   CARS: "cars",
   SERVICES: "services",
   CREATE_BOOKING: "bookings/create",
-  VERIFY_PAYMENT: "bookings/verify-payment"
+  VERIFY_PAYMENT: "bookings/verify-payment",
+  GET_BOOKING_RECEIPT: "bookings/payment-receipt"
 };
 
 const SPORTS_IMAGE_URL = `${BASE_IMAGE_URL}/Sports`;

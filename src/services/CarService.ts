@@ -18,7 +18,8 @@ const apiClient = axios.create({
   },
 });
 
-const { CARS, SERVICES, CREATE_BOOKING, VERIFY_PAYMENT } = API_ROUTE_NAMES;
+const { CARS, SERVICES, CREATE_BOOKING, VERIFY_PAYMENT, GET_BOOKING_RECEIPT } =
+  API_ROUTE_NAMES;
 
 /**
  * Fetches a list of all cars.
@@ -118,6 +119,22 @@ const verifyServiceBookingPayment = async (
   }
 };
 
+/**
+ * Fetches a PDF receipt of the Booking Order
+ * @returns A promise that resolves to a PDF of the Booking Order.
+ */
+const getServiceBookingReceipt = async (orderId: string): Promise<Blob> => {
+  try {
+    const response = await apiClient.get(`/${GET_BOOKING_RECEIPT}/${orderId}`, {
+      responseType: "blob", // PDF/binary
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching booking receipt:", error);
+    throw new Error("Failed to fetch booking receipt.");
+  }
+};
+
 export const carService = {
   getAllCars,
   getCarDetails,
@@ -125,4 +142,5 @@ export const carService = {
   getCarServiceDetails,
   createServiceBookingOrder,
   verifyServiceBookingPayment,
+  getServiceBookingReceipt,
 };
