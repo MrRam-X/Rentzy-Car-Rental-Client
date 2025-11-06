@@ -84,3 +84,25 @@ export type VerifyServiceBookingResponse = {
   statusCode: number;
   message: string;
 };
+
+export type OptionTypeValue = OptionType & {
+  isSelected: boolean
+}
+
+export type ActiveFilter = {
+  category: string;
+  label: string;
+  value: string;
+}
+
+export type FilterList = {
+    searchText: string;
+    perDayRate: {
+        min: string;
+        max: string;
+    };
+    carBrand: OptionTypeValue[];
+    carType: OptionTypeValue[];
+    transmission: OptionTypeValue[];
+    activeFilters: ActiveFilter[];
+}

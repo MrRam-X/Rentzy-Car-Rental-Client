@@ -31,3 +31,10 @@ export const getNextYear = (date: Date = new Date()): Date => {
   next.setFullYear(next.getFullYear() + 1);
   return next;
 };
+
+export const getAmountFormateText = (amount: string) => {
+  if (!isNaN(Number(amount))) {
+    return Number(amount) === 0 ? "" : `${amount}.00`
+  }
+  return ''
+}
