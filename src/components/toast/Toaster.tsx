@@ -76,7 +76,7 @@ export const ToasterContainer: React.FC<ToasterContainerProps> = ({
     // It has a very high z-index to appear on top of everything
     <div
       id="toast-container"
-      className="fixed top-4 right-4 w-full max-w-sm z-[200] space-y-3"
+      className="fixed top-4 right-4 w-full max-w-sm z-210 space-y-3"
     >
       {toasts.map((toast) => (
         <Toast key={toast.id} {...toast} onClose={removeToast} />

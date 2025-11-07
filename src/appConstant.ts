@@ -94,6 +94,19 @@ const ERROR_MESSAGES = {
     "We couldn't find any cars matching your criteria. Try adjusting your filters or clearing them to see all available vehicles.",
 };
 
+const INITIAL_BOOKING_FORM_DATA = {
+  fromDate: "",
+  toDate: "",
+  fullName: "",
+  email: "",
+  phoneNumber: "",
+  serviceType: "",
+  pickupLocation: "",
+  carType: "",
+  carBrand: "",
+  carModel: "",
+};
+
 export {
   APP_ROUTE_NAMES,
   APP_ROUTES,
@@ -107,4 +120,5 @@ export {
   CAR_ITEMS_PER_PAGE,
   MAX_VISIBLE_PAGINATION_BUTTON,
   ERROR_MESSAGES,
+  INITIAL_BOOKING_FORM_DATA,
 };
