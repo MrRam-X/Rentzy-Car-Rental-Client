@@ -1,4 +1,5 @@
 import React from "react";
+import type { BookingForm, OptionType } from "../../../types/commonTypes";
 import {
   formatDateToYMD,
   getNextDate,
@@ -8,9 +9,8 @@ import {
   CAR_TYPES_OPTIONS,
   MAX_RENT_PERIOD_IN_DAYS,
 } from "../../../appConstant";
-import type { BookingForm, OptionType } from "../../../types/commonTypes";
 
-type BookServiceFormProps = {
+type BookingFormComponentProps = {
   formData: BookingForm;
   carBrandList: OptionType[];
   carModelList: OptionType[];
@@ -24,7 +24,7 @@ type BookServiceFormProps = {
   formSubmitHandler: () => void;
 };
 
-const BookServiceForm: React.FC<BookServiceFormProps> = ({
+const BookingFormComponent: React.FC<BookingFormComponentProps> = ({
   formData,
   carBrandList,
   carModelList,
@@ -303,4 +303,4 @@ const BookServiceForm: React.FC<BookServiceFormProps> = ({
   );
 };
 
-export default BookServiceForm;
+export default BookingFormComponent;

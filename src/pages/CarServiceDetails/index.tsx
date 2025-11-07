@@ -1,5 +1,5 @@
 import React from "react";
-import BookServiceSection from "./components/BookServiceSection";
+import BookServiceSection from "../../components/common/BookingForm/BookServiceSection";
 import CarServiceDetailsAccordion from "./components/CarServiceDetailsAccordion";
 import CarServiceDetailsHeroSection from "./components/CarServiceDetailsHeroSection";
 import CarServiceDetailsSection from "./components/CarServiceDetailsSection";
@@ -62,10 +62,11 @@ const CarServiceDetails: React.FC = () => {
 
       {/* Service Booking Section */}
       <BookServiceSection
+        title="Book A Service"
         isDirty={isFormDirty}
         isModalOpen={isModalOpen}
         onModalClose={onModalClose}
-        bookServiceFormData={bookServiceFormData}
+        bookingFormData={bookServiceFormData}
       />
     </main>
   );

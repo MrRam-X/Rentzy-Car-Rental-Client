@@ -1,13 +1,16 @@
 import React from "react";
-import Modal from "../../../components/common/Modal/Modal";
-import BookServiceForm from "./BookServiceForm";
-import type { BookingForm, OptionType } from "../../../types/commonTypes";
+import Modal from "../Modal/Modal";
+import type { OptionType } from "../../../types/commonTypes";
+import type { BookingForm } from "../../../types/commonTypes";
+import BookingFormComponent from "./BookingFormComponent";
+
 
 type BookServiceSectionProps = {
+  title: string;
   isDirty: boolean
   isModalOpen: boolean;
   onModalClose: () => void;
-  bookServiceFormData: {
+  bookingFormData: {
     formData: BookingForm
     carBrandList: OptionType[]
     carModelList: OptionType[]
@@ -19,14 +22,15 @@ type BookServiceSectionProps = {
 };
 
 const BookServiceSection: React.FC<BookServiceSectionProps> = ({
+  title,
   isModalOpen,
   onModalClose,
-  bookServiceFormData,
+  bookingFormData,
 }) => {
   return (
-    <Modal title="Book A Service" isOpen={isModalOpen} onClose={onModalClose}>
-      <BookServiceForm
-        {...bookServiceFormData}
+    <Modal title={title} isOpen={isModalOpen} onClose={onModalClose}>
+      <BookingFormComponent
+        {...bookingFormData}
       />
     </Modal>
   );
