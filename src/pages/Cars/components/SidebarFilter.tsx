@@ -2,7 +2,9 @@ import React from "react";
 import type { FilterList } from "../../../types/commonTypes";
 
 type SidebarFilterProps = {
+  isOpen: boolean;
   filtersData: FilterList;
+  closeDrawer: () => void;
   onFilterChangeHandler: (
     e: React.ChangeEvent<HTMLInputElement>,
     category: keyof FilterList
@@ -11,20 +13,22 @@ type SidebarFilterProps = {
 };
 
 const SidebarFilter: React.FC<SidebarFilterProps> = ({
+  isOpen,
   filtersData,
+  closeDrawer,
   onFilterChangeHandler,
   applyFilterButtonHandler,
 }) => {
   return (
     <aside
       id="filter-sidebar"
-      className="fixed top-0 left-0 h-full w-80 bg-white shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out z-[90] lg:static lg:w-auto lg:bg-transparent lg:shadow-none lg:transform-none lg:col-span-1"
+      className={`fixed top-0 left-0 h-full w-80 bg-white shadow-2xl transform ${isOpen ? "translate-x-0 z-200 " : "-translate-x-full "}transition-transform duration-300 ease-in-out z-90 lg:static lg:w-auto lg:bg-transparent lg:shadow-none lg:transform-none lg:col-span-1`}
     >
       <div className="h-full flex flex-col">
         {/* Drawer Header (Mobile) */}
         <div className="lg:hidden flex justify-between items-center p-4 border-b">
           <h2 className="text-xl font-bold">Filters</h2>
-          <button id="close-filter-drawer" className="p-2">
+          <button onClick={closeDrawer} id="close-filter-drawer" className="p-2">
             <svg
               className="w-6 h-6"
               xmlns="http://www.w3.org/2000/svg"

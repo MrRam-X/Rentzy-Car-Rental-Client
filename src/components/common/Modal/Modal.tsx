@@ -24,7 +24,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }) => {
 
   return (
     <div
-      className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-start sm:items-center justify-center overflow-y-auto pt-10 sm:pt-0 transition-opacity duration-300 ${
+      className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-200 flex items-start sm:items-center justify-center overflow-y-auto pt-10 sm:pt-0 transition-opacity duration-300 ${
         isOpen ? "opacity-100" : "opacity-0"
       }`}
       onClick={(e) => {
@@ -37,7 +37,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }) => {
         }`}
       >
         {/* Header */}
-        <div className="flex justify-between items-center p-6 border-b border-gray-200 bg-white rounded-t-3xl z-10">
+        <div className="flex justify-between items-center p-6 border-b border-gray-200 bg-white rounded-t-3xl z-200">
           <h2 className="text-2xl font-bold text-brand-dark">{title}</h2>
           <button
             onClick={onClose}

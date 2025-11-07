@@ -8,12 +8,15 @@ import CarsGridWithActiveFilters from "./components/CarsGridWithActiveFilters";
 const Cars: React.FC = () => {
   const { showSpinner, hideSpinner, carsData } = useGlobalContext();
   const {
+    isOpen,
     currentItems,
     totalPages,
     currentPage,
     filtersData,
     carsInfoText,
     visiblePages,
+    openDrawer,
+    closeDrawer,
     goToPage,
     nextPage,
     prevPage,
@@ -32,7 +35,9 @@ const Cars: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-8">
           {/* FILTERS: Sidebar for Desktop, Drawer for Mobile/Tablet */}
           <SidebarFilter
+            isOpen={isOpen}
             filtersData={filtersData}
+            closeDrawer={closeDrawer}
             onFilterChangeHandler={onFilterChangeHandler}
             applyFilterButtonHandler={applyFilterButtonHandler}
           />
@@ -44,6 +49,7 @@ const Cars: React.FC = () => {
             totalPages={totalPages}
             currentPage={currentPage}
             filtersData={filtersData}
+            openDrawer={openDrawer}
             clearFiltersHandler={clearFiltersHandler}
             removeFilterItemHandler={removeFilterItemHandler}
             goToPage={goToPage}
@@ -53,10 +59,13 @@ const Cars: React.FC = () => {
         </div>
       </section>
       {/* Filter Drawer Backdrop */}
-      <div
-        id="filter-backdrop"
-        className="fixed inset-0 bg-black/50 z-[80] hidden lg:hidden"
-      ></div>
+      {isOpen && (
+        <div
+          onClick={closeDrawer}
+          id="filter-backdrop"
+          className="fixed inset-0 bg-black/50 z-90 lg:hidden"
+        ></div>
+      )}
     </main>
   );
 };

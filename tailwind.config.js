@@ -12,6 +12,13 @@ export default {
         "brand-gray": "#666666",
         "brand-card": "#f5f4f0",
       },
+      zIndex: {
+        80: '80',
+        90: '90',
+        100: '100',
+        110: '110',
+        200: '200'
+      },
     },
   },
   plugins: [],

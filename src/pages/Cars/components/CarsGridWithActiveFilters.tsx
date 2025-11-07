@@ -12,6 +12,7 @@ type CarsGridWithActiveFiltersProps = {
   carsInfoText: string;
   visiblePages: number[];
   filtersData: FilterList;
+  openDrawer: () => void;
   goToPage: (page: number) => void;
   nextPage: () => void;
   prevPage: () => void;
@@ -26,6 +27,7 @@ const CarsGridWithActiveFilters: React.FC<CarsGridWithActiveFiltersProps> = ({
   carsInfoText,
   visiblePages,
   filtersData,
+  openDrawer,
   goToPage,
   nextPage,
   prevPage,
@@ -37,7 +39,9 @@ const CarsGridWithActiveFilters: React.FC<CarsGridWithActiveFiltersProps> = ({
     <div className="lg:col-span-2">
       {/* Top Results Bar */}
       <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
-        {carsInfoText && <p className="text-lg text-brand-dark">{carsInfoText}</p>}
+        {carsInfoText && (
+          <p className="text-lg text-brand-dark">{carsInfoText}</p>
+        )}
         {/* Filter Tags (Desktop) */}
         <div className="hidden md:flex items-center gap-2 flex-wrap">
           {/* Active Filters Map */}
@@ -74,6 +78,7 @@ const CarsGridWithActiveFilters: React.FC<CarsGridWithActiveFiltersProps> = ({
         </div>
         {/* Filter Drawer Button (Mobile/Tablet) */}
         <button
+          onClick={openDrawer}
           id="open-filter-drawer"
           className="lg:hidden w-full md:w-auto bg-brand-dark text-white font-semibold py-3 px-6 rounded-lg flex items-center justify-center gap-2"
         >

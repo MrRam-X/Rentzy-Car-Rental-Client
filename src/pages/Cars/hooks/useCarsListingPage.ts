@@ -37,6 +37,19 @@ const useCarsListingPage = (
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [filtersData, setFiltersData] =
     useState<FilterList>(initialFiltersData);
+  const [isOpen, setIsOpen] = useState(false);
+
+  // Prevent background scroll when drawer is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [isOpen]);
+
+  const openDrawer = () => setIsOpen(true);
+  const closeDrawer = () => setIsOpen(false);
 
   // Effect for calling api/fetching it from the context upon mounting
   useEffect(() => {
@@ -393,12 +406,15 @@ const useCarsListingPage = (
   // Pagination Logic End //
 
   return {
+    isOpen,
     currentItems,
     totalPages,
     currentPage,
     filtersData,
     carsInfoText,
     visiblePages: getVisiblePages(),
+    openDrawer,
+    closeDrawer,
     goToPage,
     nextPage,
     prevPage,
