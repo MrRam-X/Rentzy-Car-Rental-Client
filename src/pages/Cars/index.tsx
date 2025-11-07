@@ -12,6 +12,7 @@ const Cars: React.FC = () => {
     totalPages,
     currentPage,
     filtersData,
+    carsInfoText,
     visiblePages,
     goToPage,
     nextPage,
@@ -38,6 +39,7 @@ const Cars: React.FC = () => {
           {/* RIGHT COLUMN: RESULTS & CAR GRID */}
           <CarsGridWithActiveFilters
             carsList={currentItems}
+            carsInfoText={carsInfoText}
             visiblePages={visiblePages}
             totalPages={totalPages}
             currentPage={currentPage}

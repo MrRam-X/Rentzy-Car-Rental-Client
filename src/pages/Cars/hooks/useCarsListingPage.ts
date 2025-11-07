@@ -263,9 +263,80 @@ const useCarsListingPage = (
       ...filtersData,
       activeFilters: [...finalActiveFilterList],
     });
+    setCurrentPage(1);
   };
 
   // Filter Car State Based on Active Filters List //
+  useEffect(() => {
+    setFilteredCarsData(
+      carsData.filter((car) => {
+        // Collect selected values for each category
+        const selectedCarTypes = filtersData.activeFilters
+          .filter((f) => f.category === "carType")
+          .map((f) => f.value);
+
+        const selectedBrand = filtersData.activeFilters.find(
+          (f) => f.category === "carBrand"
+        )?.value;
+
+        const selectedTransmission = filtersData.activeFilters.find(
+          (f) => f.category === "transmission"
+        )?.value;
+
+        const rateFilter = filtersData.activeFilters.find(
+          (f) => f.category === "perDayRate"
+        );
+
+        const searchFilter = filtersData.activeFilters.find(
+          (f) => f.category === "searchText"
+        );
+
+        // Apply OR logic for carType
+        const carTypeMatch =
+          selectedCarTypes.length === 0 ||
+          selectedCarTypes.includes(car.carType);
+
+        // Apply AND logic for other categories
+        const brandMatch =
+          !selectedBrand ||
+          selectedBrand === "ALL" ||
+          car.brand === selectedBrand;
+
+        const transmissionMatch =
+          !selectedTransmission ||
+          selectedTransmission === "ALL" ||
+          car.transmission === selectedTransmission;
+
+        const rateMatch = !rateFilter
+          ? true
+          : (() => {
+              const [minStr, maxStr] = rateFilter.value
+                .replace("₹", "")
+                .split("-")
+                .map((s) => s.trim());
+
+              const min = Number(minStr) || 0;
+              const max =
+                maxStr === "Any" || maxStr === "" ? Infinity : Number(maxStr);
+
+              return car.pricePerDay >= min && car.pricePerDay <= max;
+            })();
+
+        const searchMatch = !searchFilter
+          ? true
+          : car.model.toLowerCase().includes(searchFilter.value.toLowerCase());
+
+        // Final AND across categories
+        return (
+          carTypeMatch &&
+          brandMatch &&
+          transmissionMatch &&
+          rateMatch &&
+          searchMatch
+        );
+      })
+    );
+  }, [filtersData.activeFilters, carsData]);
 
   // Pagination Logic Start //
   const totalPages = Math.ceil(filteredCarsData.length / CAR_ITEMS_PER_PAGE);
@@ -276,6 +347,12 @@ const useCarsListingPage = (
     indexOfFirstItem,
     indexOfLastItem
   );
+
+  const total = filteredCarsData.length;
+  const start = (currentPage - 1) * CAR_ITEMS_PER_PAGE + 1;
+  const end = Math.min(currentPage * CAR_ITEMS_PER_PAGE, total);
+  const carsInfoText =
+    total > 0 ? `Showing ${start}-${end} of ${total} Cars` : "";
 
   const goToPage = (page: number) => {
     if (page >= 1 && page <= totalPages) {
@@ -320,6 +397,7 @@ const useCarsListingPage = (
     totalPages,
     currentPage,
     filtersData,
+    carsInfoText,
     visiblePages: getVisiblePages(),
     goToPage,
     nextPage,

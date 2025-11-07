@@ -17,7 +17,7 @@ const CarServiceDetails = lazy(() => import("./pages/CarServiceDetails"));
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 const BASE_IMAGE_URL = import.meta.env.VITE_APP_IMAGE_BASE_URL;
-const RAZORPAY_KEY_ID = import.meta.env.VITE_APP_RAZORPAY_KEY_ID
+const RAZORPAY_KEY_ID = import.meta.env.VITE_APP_RAZORPAY_KEY_ID;
 const API_URL = `${BASE_URL}/api/v1`;
 
 const API_ROUTE_NAMES = {
@@ -25,7 +25,7 @@ const API_ROUTE_NAMES = {
   SERVICES: "services",
   CREATE_BOOKING: "bookings/create",
   VERIFY_PAYMENT: "bookings/verify-payment",
-  GET_BOOKING_RECEIPT: "bookings/payment-receipt"
+  GET_BOOKING_RECEIPT: "bookings/payment-receipt",
 };
 
 const SPORTS_IMAGE_URL = `${BASE_IMAGE_URL}/Sports`;
@@ -35,12 +35,12 @@ const ELECTRIC_IMAGE_URL = `${BASE_IMAGE_URL}/Electric`;
 const SEDAN_IMAGE_URL = `${BASE_IMAGE_URL}/Sedan`;
 
 const CARS_IMAGE_URL = {
-  "Electric": ELECTRIC_IMAGE_URL,
-  "SUV": SUVS_IMAGE_URL,
-  "Sports": SPORTS_IMAGE_URL,
-  "Sedan": SEDAN_IMAGE_URL,
-  "Luxury": LUXURY_IMAGE_URL,
-}
+  Electric: ELECTRIC_IMAGE_URL,
+  SUV: SUVS_IMAGE_URL,
+  Sports: SPORTS_IMAGE_URL,
+  Sedan: SEDAN_IMAGE_URL,
+  Luxury: LUXURY_IMAGE_URL,
+};
 
 const APP_ROUTE_NAMES = {
   HOME: "/",
@@ -86,7 +86,13 @@ const CAR_TYPES_OPTIONS = [
     label: "SUVS",
     value: CarTypes.SUV,
   },
-]
+];
+
+const ERROR_MESSAGES = {
+  FAILED_TO_FETCH: "Oops! Failed to fetch cars data. Try Again in sometime.",
+  COULD_NOT_MATCH_CRITERIA:
+    "We couldn't find any cars matching your criteria. Try adjusting your filters or clearing them to see all available vehicles.",
+};
 
 export {
   APP_ROUTE_NAMES,
@@ -100,4 +106,5 @@ export {
   MAX_RENT_PERIOD_IN_DAYS,
   CAR_ITEMS_PER_PAGE,
   MAX_VISIBLE_PAGINATION_BUTTON,
+  ERROR_MESSAGES,
 };
