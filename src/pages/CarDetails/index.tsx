@@ -1,13 +1,47 @@
 import React from "react";
-import ContactForRenting from "../../components/common/ContactForRenting";
+import { useGlobalContext } from "../../context/GlobalContext";
 import useCarDetailsData from "./hooks/useCarDetailsData";
+import ContactForRenting from "../../components/common/ContactForRenting";
 import CarDetailsHeroSection from "./components/CarDetailsHeroSection";
 import GeneralInfoAndBookingSection from "./components/GeneralInfoAndBookingSection";
 import CarImageGallery from "./components/CarImageGallery";
 import RentalConditionsAccordion from "./components/RentalConditionsAccordion";
+import BookingFormSection from "../../components/common/BookingForm/BookingFormSection";
 
 const CarDetails: React.FC = () => {
-  const { carDetailsData } = useCarDetailsData();
+  const { addToast, showSpinner, hideSpinner, carServicesList, carsData } =
+    useGlobalContext();
+
+  const {
+    formData,
+    carDetailsData,
+    isModalOpen,
+    isFormDirty,
+    carBrandList,
+    carModelList,
+    serviceList,
+    onModalOpen,
+    onModalClose,
+    onFormDataChange,
+    formSubmitHandler,
+    formCancelHandler,
+  } = useCarDetailsData(
+    addToast,
+    showSpinner,
+    hideSpinner,
+    carServicesList,
+    carsData
+  );
+
+  const bookServiceFormData = {
+    formData,
+    serviceList,
+    carBrandList,
+    carModelList,
+    onFormDataChange,
+    formCancelHandler,
+    formSubmitHandler,
+  };
 
   return (
     <main className="font-outfit">
@@ -18,6 +52,7 @@ const CarDetails: React.FC = () => {
         carType={carDetailsData?.carType || ""}
         primaryImageUri={carDetailsData?.primaryImageUri || ""}
       />
+
       {/* General Information Section */}
       <GeneralInfoAndBookingSection
         generalInformation={carDetailsData?.generalInformation || ""}
@@ -30,10 +65,11 @@ const CarDetails: React.FC = () => {
         minAgeForDrive={carDetailsData?.minAgeForDrive || 0}
         passengers={carDetailsData?.passengers || 0}
         transmission={carDetailsData?.transmission || ""}
+        onModalOpen={onModalOpen}
       />
 
       {/* Image Gallery (with Lightbox Modal) */}
-      <CarImageGallery 
+      <CarImageGallery
         brand={carDetailsData?.brand || ""}
         model={carDetailsData?.model || ""}
         carType={carDetailsData?.carType || ""}
@@ -41,10 +77,20 @@ const CarDetails: React.FC = () => {
       />
 
       {/* Rental Conditions Accordion */}
-      <RentalConditionsAccordion rentalConditions={carDetailsData?.rentalConditions || []}/>
+      <RentalConditionsAccordion
+        rentalConditions={carDetailsData?.rentalConditions || []}
+      />
 
       {/* Section: Interested In Renting */}
       <ContactForRenting />
+
+      <BookingFormSection
+        title="Book Your Car"
+        isDirty={isFormDirty}
+        isModalOpen={isModalOpen}
+        onModalClose={onModalClose}
+        bookingFormData={bookServiceFormData}
+      />
     </main>
   );
 };

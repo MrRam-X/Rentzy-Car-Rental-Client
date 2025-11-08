@@ -5,7 +5,7 @@ import type { BookingForm } from "../../../types/commonTypes";
 import BookingFormComponent from "./BookingFormComponent";
 
 
-type BookServiceSectionProps = {
+type BookingFormSectionProps = {
   title: string;
   isDirty: boolean
   isModalOpen: boolean;
@@ -21,7 +21,7 @@ type BookServiceSectionProps = {
   }
 };
 
-const BookServiceSection: React.FC<BookServiceSectionProps> = ({
+const BookingFormSection: React.FC<BookingFormSectionProps> = ({
   title,
   isModalOpen,
   onModalClose,
@@ -36,4 +36,4 @@ const BookServiceSection: React.FC<BookServiceSectionProps> = ({
   );
 };
 
-export default BookServiceSection;
+export default BookingFormSection;

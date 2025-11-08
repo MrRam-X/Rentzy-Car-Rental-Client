@@ -114,7 +114,7 @@ const Header: React.FC = () => {
 
       {/* MOBILE MENU */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden fixed top-0 left-0 w-full h-screen bg-brand-dark z-50">
+        <div className="lg:hidden fixed top-0 left-0 w-full h-screen bg-brand-dark z-110">
           <div className="flex justify-end p-6">
             <button
               onClick={() => setIsMobileMenuOpen(false)}

@@ -22,13 +22,19 @@ const SidebarFilter: React.FC<SidebarFilterProps> = ({
   return (
     <aside
       id="filter-sidebar"
-      className={`fixed top-0 left-0 h-full w-80 bg-white shadow-2xl transform ${isOpen ? "translate-x-0 z-200 " : "-translate-x-full "}transition-transform duration-300 ease-in-out z-90 lg:static lg:w-auto lg:bg-transparent lg:shadow-none lg:transform-none lg:col-span-1`}
+      className={`fixed top-0 left-0 h-full w-80 bg-white shadow-2xl transform ${
+        isOpen ? "translate-x-0 z-200 " : "-translate-x-full "
+      }transition-transform duration-300 ease-in-out lg:static lg:w-auto lg:bg-transparent lg:shadow-none lg:transform-none lg:col-span-1`}
     >
       <div className="h-full flex flex-col">
         {/* Drawer Header (Mobile) */}
         <div className="lg:hidden flex justify-between items-center p-4 border-b">
           <h2 className="text-xl font-bold">Filters</h2>
-          <button onClick={closeDrawer} id="close-filter-drawer" className="p-2">
+          <button
+            onClick={closeDrawer}
+            id="close-filter-drawer"
+            className="p-2"
+          >
             <svg
               className="w-6 h-6"
               xmlns="http://www.w3.org/2000/svg"
@@ -59,22 +65,6 @@ const SidebarFilter: React.FC<SidebarFilterProps> = ({
                   onChange={(e) => onFilterChangeHandler(e, "searchText")}
                   className="w-full bg-white rounded-full py-5 pl-6 pr-16 text-lg text-brand-dark placeholder-gray-500 focus:outline-none"
                 />
-                {/* <button className="absolute top-1/2 right-2 -translate-y-1/2 w-14 h-14 bg-brand-gold text-black rounded-full flex items-center justify-center hover:bg-black hover:text-brand-gold transition-colors duration-500">
-                  <svg
-                    className="w-5 h-5"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                    />
-                  </svg>
-                </button> */}
               </div>
             </div>
             <div className="bg-brand-card rounded-b-2xl p-6 space-y-8">

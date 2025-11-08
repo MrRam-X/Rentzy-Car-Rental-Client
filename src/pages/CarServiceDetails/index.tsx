@@ -1,5 +1,5 @@
 import React from "react";
-import BookServiceSection from "../../components/common/BookingForm/BookServiceSection";
+import BookServiceSection from "../../components/common/BookingForm/BookingFormSection";
 import CarServiceDetailsAccordion from "./components/CarServiceDetailsAccordion";
 import CarServiceDetailsHeroSection from "./components/CarServiceDetailsHeroSection";
 import CarServiceDetailsSection from "./components/CarServiceDetailsSection";

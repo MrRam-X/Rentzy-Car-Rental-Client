@@ -11,6 +11,7 @@ type GeneralInfoAndBookingSectionProps = {
   luggage: number;
   airCondition: boolean;
   minAgeForDrive: number;
+  onModalOpen: () => void
 };
 
 const GeneralInfoAndBookingSection: React.FC<
@@ -26,6 +27,7 @@ const GeneralInfoAndBookingSection: React.FC<
   minAgeForDrive,
   passengers,
   transmission,
+  onModalOpen,
 }) => {
   return (
     <section className="py-16">
@@ -42,46 +44,6 @@ const GeneralInfoAndBookingSection: React.FC<
             </p>
 
             <ul className="mt-8 space-y-4">
-              {/* <li className="flex items-center gap-4">
-                <div className="w-10 h-10 flex-shrink-0 bg-gray-100 rounded-full flex items-center justify-center">
-                  <svg
-                    className="w-5 h-5 text-brand-dark"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                </div>
-                <span className="text-gray-700">24/7 Roadside Assistance</span>
-              </li>
-              <li className="flex items-center gap-4">
-                <div className="w-10 h-10 flex-shrink-0 bg-gray-100 rounded-full flex items-center justify-center">
-                  <svg
-                    className="w-5 h-5 text-brand-dark"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                </div>
-                <span className="text-gray-700">
-                  Free Cancellation & Return
-                </span>
-              </li> */}
               {benefitPoints.map((item, idx) => {
                 return (
                   <li
@@ -237,15 +199,15 @@ const GeneralInfoAndBookingSection: React.FC<
                   <div className="mt-8">
                     <div className="flex items-center text-lg">
                       <a
-                        href="#"
-                        className="bg-brand-gold w-2/5 text-center text-black py-4 rounded-l-full hover:bg-brand-dark hover:text-white transition-colors"
+                        onClick={onModalOpen}
+                        className="bg-brand-gold w-2/5 text-center text-black py-4 rounded-l-full hover:bg-brand-dark hover:text-white hover:cursor-pointer transition-colors"
                       >
                         Rent Now
                       </a>
                       <div className="w-1 h-6"></div>
                       <a
                         href="#"
-                        className="bg-brand-gold w-3/5 text-center text-black py-4 rounded-r-full hover:bg-brand-dark hover:text-white transition-colors flex items-center justify-center gap-2"
+                        className="bg-brand-gold w-3/5 text-center text-black py-4 rounded-r-full hover:bg-brand-dark hover:text-white hover:cursor-pointer transition-colors flex items-center justify-center gap-2"
                       >
                         <svg
                           className="w-5 h-5"
