@@ -32,6 +32,25 @@ export type BookingForm = {
   carModel: string;
 };
 
+export type BookingInput = {
+  type: "text" | "email" | "tel" | "date" | "select"; // input type
+  name: string;
+  id: string;
+  label: string;
+  required?: boolean;
+  placeholder?: string;
+  value: string;
+  className?: string;
+  disabled?: boolean;
+  min?: string;
+  max?: string;
+  disabledClassName?: string;
+  containerClassName?: string;
+  options?: OptionType[]; // for select
+  optionClassName?: (currValue: string) => string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => void
+};
+
 export const CarTypes = {
   Electric: "Electric",
   Luxury: "Luxury",
@@ -86,23 +105,23 @@ export type VerifyServiceBookingResponse = {
 };
 
 export type OptionTypeValue = OptionType & {
-  isSelected: boolean
-}
+  isSelected: boolean;
+};
 
 export type ActiveFilter = {
   category: string;
   label: string;
   value: string;
-}
+};
 
 export type FilterList = {
-    searchText: string;
-    perDayRate: {
-        min: string;
-        max: string;
-    };
-    carBrand: OptionTypeValue[];
-    carType: OptionTypeValue[];
-    transmission: OptionTypeValue[];
-    activeFilters: ActiveFilter[];
-}
+  searchText: string;
+  perDayRate: {
+    min: string;
+    max: string;
+  };
+  carBrand: OptionTypeValue[];
+  carType: OptionTypeValue[];
+  transmission: OptionTypeValue[];
+  activeFilters: ActiveFilter[];
+};

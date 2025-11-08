@@ -14,11 +14,7 @@ const CarServiceDetails: React.FC = () => {
     carServiceDetailsData,
     isModalOpen,
     isFormDirty,
-    formData,
-    serviceList,
-    carBrandList,
-    carModelList,
-    onFormDataChange,
+    formInputFieldsList,
     formCancelHandler,
     formSubmitHandler,
     onModalOpen,
@@ -32,11 +28,7 @@ const CarServiceDetails: React.FC = () => {
   );
 
   const bookServiceFormData = {
-    formData,
-    serviceList,
-    carBrandList,
-    carModelList,
-    onFormDataChange,
+    formInputFieldsList,
     formCancelHandler,
     formSubmitHandler,
   };

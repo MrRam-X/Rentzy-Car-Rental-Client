@@ -1,24 +1,18 @@
 import React from "react";
 import Modal from "../Modal/Modal";
-import type { OptionType } from "../../../types/commonTypes";
-import type { BookingForm } from "../../../types/commonTypes";
 import BookingFormComponent from "./BookingFormComponent";
-
+import type { BookingInput } from "../../../types/commonTypes";
 
 type BookingFormSectionProps = {
   title: string;
-  isDirty: boolean
+  isDirty: boolean;
   isModalOpen: boolean;
   onModalClose: () => void;
   bookingFormData: {
-    formData: BookingForm
-    carBrandList: OptionType[]
-    carModelList: OptionType[]
-    serviceList: OptionType[]
-    onFormDataChange: (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => void
-    formCancelHandler: () => void
-    formSubmitHandler: () => void
-  }
+    formInputFieldsList: BookingInput[];
+    formCancelHandler: () => void;
+    formSubmitHandler: () => void;
+  };
 };
 
 const BookingFormSection: React.FC<BookingFormSectionProps> = ({
@@ -29,9 +23,7 @@ const BookingFormSection: React.FC<BookingFormSectionProps> = ({
 }) => {
   return (
     <Modal title={title} isOpen={isModalOpen} onClose={onModalClose}>
-      <BookingFormComponent
-        {...bookingFormData}
-      />
+      <BookingFormComponent {...bookingFormData} />
     </Modal>
   );
 };

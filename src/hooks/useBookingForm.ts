@@ -42,10 +42,22 @@ const useBookingForm = (
   ) => {
     const { name, value } = event.target;
 
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData((prev) => {
+      const updated = {...prev}
+
+      if (name === "carType" && value === '') {
+        updated.carBrand = '';
+        updated.carModel = '';
+      }
+
+      if (name === "carBrand" && value === '') {
+        updated.carModel = '';
+      }
+
+      updated[name as keyof BookingForm] = value
+
+      return updated
+    })
 
     if (!isFormDirty) setIsFormDirty(true);
   };

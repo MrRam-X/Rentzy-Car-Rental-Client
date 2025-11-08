@@ -13,16 +13,12 @@ const CarDetails: React.FC = () => {
     useGlobalContext();
 
   const {
-    formData,
     carDetailsData,
     isModalOpen,
     isFormDirty,
-    carBrandList,
-    carModelList,
-    serviceList,
+    formInputFieldsList,
     onModalOpen,
     onModalClose,
-    onFormDataChange,
     formSubmitHandler,
     formCancelHandler,
   } = useCarDetailsData(
@@ -34,11 +30,7 @@ const CarDetails: React.FC = () => {
   );
 
   const bookServiceFormData = {
-    formData,
-    serviceList,
-    carBrandList,
-    carModelList,
-    onFormDataChange,
+    formInputFieldsList,
     formCancelHandler,
     formSubmitHandler,
   };
