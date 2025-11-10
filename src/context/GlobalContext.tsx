@@ -11,6 +11,7 @@ import { ToasterContainer } from "../components/toast/Toaster";
 import type { CarService } from "../types/CarService";
 import { carService } from "../services/CarService";
 import type { Car } from "../types/Cars";
+import type { RentalStation } from "../types/RentalStation";
 
 export type ToastType = "success" | "error" | "info" | "warning";
 
@@ -28,6 +29,7 @@ interface GlobalContextProviderProps {
 interface GlobalContextType {
   carServicesList: CarService[];
   carsData: Car[];
+  rentalStations: RentalStation[];
   addToast: (title: string, message: string, type: ToastType) => void;
   showSpinner: () => void;
   hideSpinner: () => void;
@@ -43,6 +45,7 @@ export const GlobalContextProvider: React.FC<GlobalContextProviderProps> = ({
   const [toasts, setToasts] = useState<ToastProps[]>([]);
   const [carServicesList, setCarServicesList] = useState<CarService[]>([]);
   const [carsData, setCarsData] = useState<Car[]>([]);
+  const [rentalStations, setRentalStations] = useState<RentalStation[]>([]);
 
   const addToast = (title: string, message: string, type: ToastType) => {
     const id = crypto.randomUUID();
@@ -85,9 +88,22 @@ export const GlobalContextProvider: React.FC<GlobalContextProviderProps> = ({
     }
   };
 
+  const fetchRentalStationsData = async () => {
+    showSpinner();
+    try {
+      const data = await carService.getAllRentalStations();
+      setRentalStations(data);
+    } catch (err) {
+      console.log("Failed to load rental stations.", err);
+    } finally {
+      hideSpinner();
+    }
+  };
+
   useEffect(() => {
     fetchCarServicesData();
     fetchCarsData();
+    fetchRentalStationsData();
   }, []);
 
   const showSpinner = () => setIsLoading(true);
@@ -97,12 +113,13 @@ export const GlobalContextProvider: React.FC<GlobalContextProviderProps> = ({
     () => ({
       carsData,
       carServicesList,
+      rentalStations,
       addToast,
       showSpinner,
       hideSpinner,
       updateCarServiceList,
     }),
-    [carServicesList, carsData]
+    [carServicesList, carsData, rentalStations]
   );
 
   return (

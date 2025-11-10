@@ -2,6 +2,7 @@ import axios from "axios";
 import { API_URL, API_ROUTE_NAMES } from "../appConstant";
 import type { Car } from "../types/Cars";
 import type { CarService } from "../types/CarService";
+import type { RentalStation } from "../types/RentalStation";
 import type {
   BookingOrderResponse,
   BookingOrderPayload,
@@ -18,7 +19,7 @@ const apiClient = axios.create({
   },
 });
 
-const { CARS, SERVICES, CREATE_BOOKING, VERIFY_PAYMENT, GET_BOOKING_RECEIPT } =
+const { CARS, SERVICES, CREATE_BOOKING, VERIFY_PAYMENT, GET_BOOKING_RECEIPT, RENTAL_STATIONS } =
   API_ROUTE_NAMES;
 
 /**
@@ -135,6 +136,24 @@ const getServiceBookingReceipt = async (orderId: string): Promise<Blob> => {
   }
 };
 
+/**
+ * Fetches a list of all rental stations.
+ * @returns A promise that resolves to an array of Rental Station objects.
+ */
+const getAllRentalStations = async (
+  params?: QueryParams
+): Promise<RentalStation[]> => {
+  try {
+    const response = await apiClient.get<RentalStation[]>(`/${RENTAL_STATIONS}`, {
+      params,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching all Rental Stations:", error);
+    throw new Error("Failed to fetch Rental Stations.");
+  }
+};
+
 export const carService = {
   getAllCars,
   getCarDetails,
@@ -143,4 +162,5 @@ export const carService = {
   createServiceBookingOrder,
   verifyServiceBookingPayment,
   getServiceBookingReceipt,
+  getAllRentalStations,
 };

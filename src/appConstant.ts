@@ -26,6 +26,7 @@ const API_ROUTE_NAMES = {
   CREATE_BOOKING: "bookings/create",
   VERIFY_PAYMENT: "bookings/verify-payment",
   GET_BOOKING_RECEIPT: "bookings/payment-receipt",
+  RENTAL_STATIONS: "rental-stations",
 };
 
 const SPORTS_IMAGE_URL = `${BASE_IMAGE_URL}/Sports`;

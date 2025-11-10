@@ -125,3 +125,11 @@ export type FilterList = {
   transmission: OptionTypeValue[];
   activeFilters: ActiveFilter[];
 };
+
+export type AutoRentalForm = {
+    pickupLocation: string;
+    pickupDate: string;
+    dropoffDate: string;
+    carType: string;
+    email: string;
+}
