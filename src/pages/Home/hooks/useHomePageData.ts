@@ -2,11 +2,12 @@ import { useMemo, useState } from "react";
 import type { ToastType } from "../../../context/GlobalContext";
 import { carService } from "../../../services/CarService";
 import type { AutoRentalForm, OptionType } from "../../../types/commonTypes";
+import type { RentalStation } from "../../../types/RentalStation";
+import type { Car } from "../../../types/Cars";
 import {
   INITIAL_AUTO_RENTAL_FORM_DATA,
   MAX_RENT_PERIOD_IN_DAYS,
 } from "../../../appConstant";
-import type { RentalStation } from "../../../types/RentalStation";
 import {
   formatDateToYMD,
   getNextDate,
@@ -17,7 +18,8 @@ const useHomePageData = (
   addToast: (title: string, message: string, type: ToastType) => void,
   showSpinner: () => void,
   hideSpinner: () => void,
-  rentalStations: RentalStation[]
+  rentalStations: RentalStation[],
+  carsData: Car[]
 ) => {
   const [autoRentalFormData, setAutoRentalFormData] = useState<AutoRentalForm>(
     INITIAL_AUTO_RENTAL_FORM_DATA
@@ -169,9 +171,22 @@ const useHomePageData = (
     return [];
   }, [rentalStations]);
 
+  const categoriesList = useMemo(() => {
+    const updatedList: Car[] = []
+    if (carsData.length > 0) {
+      carsData.forEach((car) => {
+        if (!updatedList.find((item) => item.carType === car.carType)) {
+          updatedList.push(car)
+        }
+      })
+    }
+    return updatedList
+  }, [carsData])
+
   return {
     autoRentalFormData,
     pickupLocationList,
+    categoriesList,
     onChangeAutoRentalFormData,
     handleSubmitAutoRental,
   };

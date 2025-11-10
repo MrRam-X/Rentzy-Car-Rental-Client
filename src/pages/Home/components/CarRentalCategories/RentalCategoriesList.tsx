@@ -1,9 +1,9 @@
 import React from "react";
-import type { RentalCategoryType } from "../../types";
+import type { Car } from "../../../../types/Cars";
 import RentalCategoriesCard from "./RentalCategoriesCard";
 
 type RentalCategoriesListProps = {
-  rentalCategoryList: RentalCategoryType[];
+  rentalCategoryList: Car[];
 };
 
 const RentalCategoriesList: React.FC<RentalCategoriesListProps> = ({
@@ -12,7 +12,7 @@ const RentalCategoriesList: React.FC<RentalCategoriesListProps> = ({
   return (
     <>
       {rentalCategoryList.map((category) => {
-        return <RentalCategoriesCard key={category.title} {...category} />;
+        return <RentalCategoriesCard key={category._id} {...category} />;
       })}
     </>
   );

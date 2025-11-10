@@ -3,7 +3,6 @@ import ContactForRenting from "../../components/common/ContactForRenting";
 import AboutUsSection from "../../components/common/AboutUsSection";
 import BookAutoRental from "./components/BookAutoRental";
 import CarRentalProcess from "./components/CarRentalProcess";
-import LuxuryCarFleet from "./components/LuxuryCarFleet/LuxuryCarFleet";
 import OurServices from "./components/OurServices/OurServices";
 import CarRentalCategories from "./components/CarRentalCategories/CarRentalCategories";
 import HeroSection from "./components/HeroSection";
@@ -11,13 +10,14 @@ import { useGlobalContext } from "../../context/GlobalContext";
 import useHomePageData from "./hooks/useHomePageData";
 
 const Home: React.FC = () => {
-  const { addToast, showSpinner, hideSpinner, rentalStations } = useGlobalContext();
+  const { addToast, showSpinner, hideSpinner, rentalStations, carsData } = useGlobalContext();
   const {
     autoRentalFormData,
     pickupLocationList,
+    categoriesList,
     handleSubmitAutoRental,
     onChangeAutoRentalFormData,
-  } = useHomePageData(addToast, showSpinner, hideSpinner, rentalStations);
+  } = useHomePageData(addToast, showSpinner, hideSpinner, rentalStations, carsData);
   return (
     <main className="font-outfit">
       {/* Hero Section */}
@@ -37,11 +37,11 @@ const Home: React.FC = () => {
         onChangeAutoRentalFormData={onChangeAutoRentalFormData}
       />
 
-      {/* Luxury Car Fleet Section */}
-      <LuxuryCarFleet />
+      {/* Luxury Car Fleet Section (Disabled for MVP) */}
+      {/* <LuxuryCarFleet /> */}
 
       {/* Car Rental Categories Carousel*/}
-      <CarRentalCategories />
+      <CarRentalCategories categoriesList={categoriesList}/>
 
       {/* Car Rental PROCESS */}
       <CarRentalProcess />

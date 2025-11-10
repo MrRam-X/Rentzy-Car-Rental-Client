@@ -1,22 +1,24 @@
 import React from "react";
-import type { RentalCategoryType } from "../../types";
+import { Link } from "react-router-dom";
+import type { Car } from "../../../../types/Cars";
+import { generateImageUrl } from "../../../../utils/commonUtils";
 
-const RentalCategoriesCard: React.FC<RentalCategoryType> = ({imageSrc, title}) => {
+const RentalCategoriesCard: React.FC<Car> = ({_id, primaryImageUri, model, brand, carType}) => {
   return (
     <div className="slide flex-shrink-0 w-full lg:w-1/3 px-4">
-      <a
-        href="#"
+      <Link
+        to={`cars/${_id}`}
         className="group relative block rounded-3xl overflow-hidden shadow-lg h-96"
       >
         <img
-          src={`${imageSrc}`}
-          alt={`${title}`}
+          src={`${generateImageUrl(primaryImageUri, carType)}`}
+          alt={`Image of ${carType} car type, specifically ${brand} ${model}`}
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-black/30"></div>
         <div className="relative h-full flex flex-col justify-between p-6">
           <h3 className="text-center text-white text-2xl font-bold">
-            {title}
+            {carType}
           </h3>
           <div className="w-12 h-12 bg-brand-gold rounded-full flex items-center justify-center group-hover:bg-brand-dark group-hover:text-brand-gold transition-colors duration-300">
             <svg
@@ -35,7 +37,7 @@ const RentalCategoriesCard: React.FC<RentalCategoryType> = ({imageSrc, title}) =
             </svg>
           </div>
         </div>{" "}
-      </a>
+      </Link>
     </div>
   );
 };
