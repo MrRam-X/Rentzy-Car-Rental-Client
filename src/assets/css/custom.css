@@ -1,3 +1,47 @@
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+/* Enter animations */
+.slide-active .slide-headline {
+  animation: fadeInUp 0.6s 0.3s both;
+}
+.slide-active .slide-description {
+  animation: fadeInUp 0.6s 0.5s both;
+}
+.slide-active .slide-buttons {
+  animation: fadeInUp 0.6s 0.7s both;
+}
+
+/* Exit animations */
+.hero-slide:not(.slide-active) .slide-headline {
+  animation: fadeOutDown 0.4s both;
+}
+.hero-slide:not(.slide-active) .slide-description {
+  animation: fadeOutDown 0.4s both;
+}
+.hero-slide:not(.slide-active) .slide-buttons {
+  animation: fadeOutDown 0.4s both;
+}
+
 /* Toaster Messages CSS */
 .toast-enter {
   opacity: 0;

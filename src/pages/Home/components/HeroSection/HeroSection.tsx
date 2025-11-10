@@ -1,11 +1,9 @@
 import React from "react";
-import CustomLinkButton from "../../../components/common/Buttons/CustomLinkButton";
+import CustomLinkButton from "../../../../components/common/Buttons/CustomLinkButton";
 
 const HeroSection: React.FC = () => {
   return (
-    <section
-      className="relative h-screen w-full bg-hero-pattern bg-cover bg-center flex items-center"
-    >
+    <section className="relative h-screen w-full bg-hero-pattern bg-cover bg-center flex items-center">
       <div className="absolute inset-0 bg-black/60"></div>
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 text-white max-w-6xl">
         <div className="max-w-2xl">
@@ -25,7 +23,7 @@ const HeroSection: React.FC = () => {
 
           <div className="flex flex-wrap gap-4">
             {/* View Details Button */}
-            <CustomLinkButton 
+            <CustomLinkButton
               borderClassName="border-2 border-brand-gold rounded-full"
               colorClassName="bg-brand-gold text-black"
               paddingClassName="py-4 px-8"
@@ -35,7 +33,7 @@ const HeroSection: React.FC = () => {
               iconElementName="RIGHT_ARROW"
             />
             {/* Rent Now Button */}
-            <CustomLinkButton 
+            <CustomLinkButton
               borderClassName="border-2 border-white rounded-full"
               colorClassName="text-white"
               paddingClassName="py-4 px-8"

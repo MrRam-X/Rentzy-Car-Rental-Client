@@ -5,7 +5,7 @@ import BookAutoRental from "./components/BookAutoRental";
 import CarRentalProcess from "./components/CarRentalProcess";
 import OurServices from "./components/OurServices/OurServices";
 import CarRentalCategories from "./components/CarRentalCategories/CarRentalCategories";
-import HeroSection from "./components/HeroSection";
+import HeroSectionContainer from "./components/HeroSection/HeroSectionContainer";
 import { useGlobalContext } from "../../context/GlobalContext";
 import useHomePageData from "./hooks/useHomePageData";
 
@@ -21,7 +21,7 @@ const Home: React.FC = () => {
   return (
     <main className="font-outfit">
       {/* Hero Section */}
-      <HeroSection />
+      <HeroSectionContainer carsList={categoriesList}/>
 
       {/* About Us Section */}
       <AboutUsSection />
