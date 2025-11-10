@@ -35,6 +35,7 @@ const LUXURY_IMAGE_URL = `${BASE_IMAGE_URL}/Luxury`;
 const SUVS_IMAGE_URL = `${BASE_IMAGE_URL}/SUV`;
 const ELECTRIC_IMAGE_URL = `${BASE_IMAGE_URL}/Electric`;
 const SEDAN_IMAGE_URL = `${BASE_IMAGE_URL}/Sedan`;
+const ECONOMY_IMAGE_URL = `${BASE_IMAGE_URL}/Economy`;
 
 const CARS_IMAGE_URL = {
   Electric: ELECTRIC_IMAGE_URL,
@@ -42,6 +43,7 @@ const CARS_IMAGE_URL = {
   Sports: SPORTS_IMAGE_URL,
   Sedan: SEDAN_IMAGE_URL,
   Luxury: LUXURY_IMAGE_URL,
+  Economy: ECONOMY_IMAGE_URL,
 };
 
 const APP_ROUTE_NAMES = {
@@ -87,6 +89,10 @@ const CAR_TYPES_OPTIONS = [
   {
     label: "SUVS",
     value: CarTypes.SUV,
+  },
+    {
+    label: "Economy",
+    value: CarTypes.Economy,
   },
 ];
 

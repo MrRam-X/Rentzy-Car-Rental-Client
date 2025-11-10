@@ -57,6 +57,7 @@ export const CarTypes = {
   Sedan: "Sedan",
   Sports: "Sports",
   SUV: "SUV",
+  Economy: "Economy",
 } as const;
 
 export type CarTypes = (typeof CarTypes)[keyof typeof CarTypes];
