@@ -9,6 +9,10 @@ import type {
   VerifyServiceBookingPayload,
   VerifyServiceBookingResponse,
 } from "../types/commonTypes";
+import type {
+  AutoRentalPayload,
+  AutoRentalResponse,
+} from "../types/AutoRental";
 
 type QueryParams = Record<string, string | number | boolean>;
 
@@ -19,8 +23,15 @@ const apiClient = axios.create({
   },
 });
 
-const { CARS, SERVICES, CREATE_BOOKING, VERIFY_PAYMENT, GET_BOOKING_RECEIPT, RENTAL_STATIONS } =
-  API_ROUTE_NAMES;
+const {
+  CARS,
+  SERVICES,
+  CREATE_BOOKING,
+  VERIFY_PAYMENT,
+  GET_BOOKING_RECEIPT,
+  RENTAL_STATIONS,
+  CREATE_AUTO_RENTAL,
+} = API_ROUTE_NAMES;
 
 /**
  * Fetches a list of all cars.
@@ -144,13 +155,35 @@ const getAllRentalStations = async (
   params?: QueryParams
 ): Promise<RentalStation[]> => {
   try {
-    const response = await apiClient.get<RentalStation[]>(`/${RENTAL_STATIONS}`, {
-      params,
-    });
+    const response = await apiClient.get<RentalStation[]>(
+      `/${RENTAL_STATIONS}`,
+      {
+        params,
+      }
+    );
     return response.data;
   } catch (error) {
     console.error("Error fetching all Rental Stations:", error);
     throw new Error("Failed to fetch Rental Stations.");
+  }
+};
+
+/**
+ * Creates an order for auto rental car service.
+ * @returns A promise that resolves to a Auto Rental object.
+ */
+const createAutoRentalBookingOrder = async (
+  payload: AutoRentalPayload
+): Promise<AutoRentalResponse> => {
+  try {
+    const response = await apiClient.post<AutoRentalResponse>(
+      `/${CREATE_AUTO_RENTAL}`,
+      { ...payload }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error creating auto rental order:", error);
+    throw new Error("Failed to create auto rental order.");
   }
 };
 
@@ -163,4 +196,5 @@ export const carService = {
   verifyServiceBookingPayment,
   getServiceBookingReceipt,
   getAllRentalStations,
+  createAutoRentalBookingOrder,
 };

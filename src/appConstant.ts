@@ -27,6 +27,7 @@ const API_ROUTE_NAMES = {
   VERIFY_PAYMENT: "bookings/verify-payment",
   GET_BOOKING_RECEIPT: "bookings/payment-receipt",
   RENTAL_STATIONS: "rental-stations",
+  CREATE_AUTO_RENTAL: "auto-rentals/create",
 };
 
 const SPORTS_IMAGE_URL = `${BASE_IMAGE_URL}/Sports`;
@@ -108,6 +109,14 @@ const INITIAL_BOOKING_FORM_DATA = {
   carModel: "",
 };
 
+const INITIAL_AUTO_RENTAL_FORM_DATA = {
+  pickupLocation: "",
+  pickupDate: "",
+  dropoffDate: "",
+  carType: "",
+  email: "",
+};
+
 export {
   APP_ROUTE_NAMES,
   APP_ROUTES,
@@ -122,4 +131,5 @@ export {
   MAX_VISIBLE_PAGINATION_BUTTON,
   ERROR_MESSAGES,
   INITIAL_BOOKING_FORM_DATA,
+  INITIAL_AUTO_RENTAL_FORM_DATA,
 };
