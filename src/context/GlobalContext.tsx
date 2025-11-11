@@ -106,6 +106,21 @@ export const GlobalContextProvider: React.FC<GlobalContextProviderProps> = ({
     fetchRentalStationsData();
   }, []);
 
+  // This effect will run whenever the `isLoading` state changes.
+  useEffect(() => {
+    if (isLoading) {
+      // When the spinner is showing, disable scrolling on the body.
+      document.body.style.overflow = 'hidden';
+    } else {
+      // When the spinner is hidden, re-enable scrolling.
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isLoading]);
+
   const showSpinner = () => setIsLoading(true);
   const hideSpinner = () => setIsLoading(false);
 
