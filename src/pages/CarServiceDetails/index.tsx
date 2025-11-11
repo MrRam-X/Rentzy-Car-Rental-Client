@@ -41,7 +41,7 @@ const CarServiceDetails: React.FC = () => {
   };
 
   return (
-    <main className="font-outfit">
+    <main className="font-outfit" aria-labelledby="service-details-page">
       {/* Service Details Hero Section */}
       <CarServiceDetailsHeroSection
         carServiceDetailsData={carServiceDetailsData}

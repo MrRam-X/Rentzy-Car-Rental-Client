@@ -6,7 +6,7 @@ const Services: React.FC = () => {
   const { carServiceData } = useCarServices();
 
   return (
-    <main className="font-outfit">
+    <main className="font-outfit" aria-labelledby="service-page">
       {/* Services Hero Section */}
       <section className="relative h-[70vh] min-h-[300px] w-full bg-hero-pattern bg-cover bg-center flex items-center justify-center text-center">
         <div className="absolute inset-0 bg-black/60"></div>

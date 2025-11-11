@@ -10,7 +10,7 @@ const Contact: React.FC = () => {
   const { contactFormData, onFormDataChangeHandler, onFormSubmitHandler } =
     useContactData(addToast, showSpinner, hideSpinner);
   return (
-    <main className="font-outfit">
+    <main className="font-outfit" aria-labelledby="contact-page">
       {/* Contact Us Hero Section */}
       <ContactHeroSection />
 

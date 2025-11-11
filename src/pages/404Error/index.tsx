@@ -5,7 +5,7 @@ import { APP_ROUTE_NAMES } from "../../appConstant";
 
 const ErrorNotFound: React.FC = () => {
   return (
-    <main>
+    <main className="font-outfit" aria-labelledby="error-page">
       {/* Full-screen Hero Section */}
       <section
         className="relative h-screen w-full flex items-center justify-center text-center bg-cover bg-center"
@@ -38,7 +38,7 @@ const ErrorNotFound: React.FC = () => {
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
-              stroke-width="2"
+              strokeWidth="2"
             >
               <path
                 strokeLinecap="round"

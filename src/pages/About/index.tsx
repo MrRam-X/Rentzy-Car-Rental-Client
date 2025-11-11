@@ -72,7 +72,7 @@ const teamData = [
 
 const About: React.FC = () => {
   return (
-    <main className="font-outfit">
+    <main className="font-outfit" aria-labelledby="about-page">
       {/* About Us Hero Section */}
       <AboutUsHeroSection />
 

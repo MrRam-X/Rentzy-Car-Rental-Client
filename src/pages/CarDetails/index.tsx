@@ -43,7 +43,7 @@ const CarDetails: React.FC = () => {
   };
 
   return (
-    <main className="font-outfit">
+    <main className="font-outfit" aria-labelledby="car-details-page">
       {/* Hero Section */}
       <CarDetailsHeroSection
         brand={carDetailsData?.brand || ""}

@@ -27,7 +27,7 @@ const Cars: React.FC = () => {
   } = useCarsListingPage(showSpinner, hideSpinner, carsData);
 
   return (
-    <main className="font-outfit">
+    <main className="font-outfit" aria-labelledby="cars-page">
       {/* Car Listing Page Hero Section */}
       <CarListingHeroSection />
       {/* MAIN CONTENT: FILTERS & CAR GRID */}

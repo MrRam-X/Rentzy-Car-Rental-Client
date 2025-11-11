@@ -19,7 +19,7 @@ const Home: React.FC = () => {
     onChangeAutoRentalFormData,
   } = useHomePageData(addToast, showSpinner, hideSpinner, rentalStations, carsData);
   return (
-    <main className="font-outfit">
+    <main className="font-outfit" aria-labelledby="home-page">
       {/* Hero Section */}
       <HeroSectionContainer carsList={categoriesList}/>
 

@@ -4,8 +4,9 @@ import { GlobalContextProvider } from "./context/GlobalContext";
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 import Spinner from "./components/spinner/Spinner";
 import MainLayout from "./components/layout/MainLayout";
-import { APP_ROUTES } from "./appConstant";
+import RouteScrollAndFocus from "./components/layout/RouteFocusAndScroll";
 import ErrorNotFound from "./pages/404Error";
+import { APP_ROUTES } from "./appConstant";
 import "./App.css";
 
 function App() {
@@ -14,6 +15,8 @@ function App() {
       <BrowserRouter>
         <ErrorBoundary>
           <Suspense fallback={<Spinner />}>
+          {/* scroll to top and focus main on every route change */}
+          <RouteScrollAndFocus scrollTo="top" behavior="auto" focusSelector="main"/>
             <Routes>
               <Route element={<MainLayout />}>
                 {APP_ROUTES.map(({ path, Component }) => (
