@@ -14,11 +14,13 @@ import {
   MAX_RENT_PERIOD_IN_DAYS,
   RAZORPAY_KEY_ID,
 } from "../appConstant";
+import type { RentalStation } from "../types/RentalStation";
 
 const useBookingForm = (
   formData: BookingForm,
   carsData: Car[],
   carServicesList: CarService[],
+  rentalStations: RentalStation[],
   setFormData: React.Dispatch<React.SetStateAction<BookingForm>>,
   addToast: (title: string, message: string, type: ToastType) => void,
   showSpinner: () => void,
@@ -43,21 +45,21 @@ const useBookingForm = (
     const { name, value } = event.target;
 
     setFormData((prev) => {
-      const updated = {...prev}
+      const updated = { ...prev };
 
-      if (name === "carType" && value === '') {
-        updated.carBrand = '';
-        updated.carModel = '';
+      if (name === "carType" && value === "") {
+        updated.carBrand = "";
+        updated.carModel = "";
       }
 
-      if (name === "carBrand" && value === '') {
-        updated.carModel = '';
+      if (name === "carBrand" && value === "") {
+        updated.carModel = "";
       }
 
-      updated[name as keyof BookingForm] = value
+      updated[name as keyof BookingForm] = value;
 
-      return updated
-    })
+      return updated;
+    });
 
     if (!isFormDirty) setIsFormDirty(true);
   };
@@ -162,16 +164,14 @@ const useBookingForm = (
 
       // Pickup Location Validation
       if (pickupLocation) {
-        // Matches: "Area, District, State, Country, 123456"
-        const pickupAddressRegex =
-          /^([A-Za-z ]+), ([A-Za-z ]+), ([A-Za-z ]+), ([A-Za-z ]+), (\d{6})$/;
-        const isPickupAddressValid = pickupAddressRegex.test(pickupLocation);
+        const isPickupAddressValid = pickupLocationList.find(
+          (location) => location.value === pickupLocation
+        );
 
         if (!isPickupAddressValid) {
           errorsList.push({
             name: "Pickup Location",
-            errorMessage:
-              "Pickup location is not valid. It should follow 'Area, District, State, Country, Pin code' pattern",
+            errorMessage: "Pickup Location is not valid",
           });
         }
       }
@@ -376,12 +376,23 @@ const useBookingForm = (
     return [];
   }, [carServicesList]);
 
+  const pickupLocationList: OptionType[] = useMemo(() => {
+    if (rentalStations.length > 0) {
+      return rentalStations.map((location) => ({
+        label: location.locationAbbreviation,
+        value: location._id,
+      }));
+    }
+    return [];
+  }, [rentalStations]);
+
   return {
     isModalOpen,
     isFormDirty,
     carBrandList,
     carModelList,
     serviceList,
+    pickupLocationList,
     onModalOpen,
     onModalClose,
     onFormDataChange,

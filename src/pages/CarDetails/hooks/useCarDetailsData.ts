@@ -16,6 +16,7 @@ import {
   getNextYear,
   getNextDate,
 } from "../../../utils/commonUtils";
+import type { RentalStation } from "../../../types/RentalStation";
 
 type RouteParams = {
   carId: string;
@@ -26,7 +27,8 @@ const useCarDetailsData = (
   showSpinner: () => void,
   hideSpinner: () => void,
   carServicesList: CarService[],
-  carsData: Car[]
+  carsData: Car[],
+  rentalStations: RentalStation[]
 ) => {
   const { carId } = useParams<RouteParams>();
   const [carDetailsData, setCarDetailsData] = useState<Car>({} as Car);
@@ -40,6 +42,7 @@ const useCarDetailsData = (
     carBrandList,
     carModelList,
     serviceList,
+    pickupLocationList,
     onModalOpen,
     onModalClose,
     onFormDataChange,
@@ -49,6 +52,7 @@ const useCarDetailsData = (
     formData,
     carsData,
     carServicesList,
+    rentalStations,
     setFormData,
     addToast,
     showSpinner,
@@ -163,13 +167,19 @@ const useCarDetailsData = (
       containerClassName: "sm:col-span-2",
     },
     {
-      type: "text",
+      type: "select",
       name: "pickupLocation",
       id: "pickup-location",
       label: "Pickup Location",
       required: true,
       value: formData.pickupLocation,
       onChange: onFormDataChange,
+      options: [
+        { value: "", label: "Select a pickup location" },
+        ...pickupLocationList,
+      ],
+      optionClassName: (currValue: string) =>
+        formData.pickupLocation === currValue ? "text-gray-400" : "",
       placeholder: "Pickup Location. e.g - Area, District, State, Country, Pin",
       containerClassName: "sm:col-span-2",
     },

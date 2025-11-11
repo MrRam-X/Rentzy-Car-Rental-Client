@@ -16,6 +16,7 @@ import {
   getNextYear,
   getNextDate,
 } from "../../../utils/commonUtils";
+import type { RentalStation } from "../../../types/RentalStation";
 
 type RouteParams = {
   serviceId: string;
@@ -26,7 +27,8 @@ const useCarServiceDetails = (
   showSpinner: () => void,
   hideSpinner: () => void,
   carServicesList: CarService[],
-  carsData: Car[]
+  carsData: Car[],
+  rentalStations: RentalStation[]
 ) => {
   const { serviceId } = useParams<RouteParams>();
   const [carServiceDetailsData, setCarServiceDetailsData] =
@@ -41,6 +43,7 @@ const useCarServiceDetails = (
     carBrandList,
     carModelList,
     serviceList,
+    pickupLocationList,
     onModalOpen,
     onModalClose,
     onFormDataChange,
@@ -50,6 +53,7 @@ const useCarServiceDetails = (
     formData,
     carsData,
     carServicesList,
+    rentalStations,
     setFormData,
     addToast,
     showSpinner,
@@ -152,16 +156,24 @@ const useCarServiceDetails = (
       optionClassName: (currValue: string) =>
         formData.serviceType === currValue ? "text-gray-400" : "",
       containerClassName: "sm:col-span-2",
-      disabledClassName: formData.serviceType ? "text-gray-400 cursor-not-allowed" : ""
+      disabledClassName: formData.serviceType
+        ? "text-gray-400 cursor-not-allowed"
+        : "",
     },
     {
-      type: "text",
+      type: "select",
       name: "pickupLocation",
       id: "pickup-location",
       label: "Pickup Location",
       required: true,
       value: formData.pickupLocation,
       onChange: onFormDataChange,
+      options: [
+        { value: "", label: "Select a pickup location" },
+        ...pickupLocationList,
+      ],
+      optionClassName: (currValue: string) =>
+        formData.pickupLocation === currValue ? "text-gray-400" : "",
       placeholder: "Pickup Location. e.g - Area, District, State, Country, Pin",
       containerClassName: "sm:col-span-2",
     },
@@ -204,7 +216,8 @@ const useCarServiceDetails = (
       optionClassName: (currValue: string) =>
         formData.carModel === currValue ? "text-gray-400" : "",
       containerClassName: "sm:col-span-2",
-      disabledClassName: (!formData.carType || !formData.carBrand) ? "text-gray-400" : "",
+      disabledClassName:
+        !formData.carType || !formData.carBrand ? "text-gray-400" : "",
     },
   ];
 

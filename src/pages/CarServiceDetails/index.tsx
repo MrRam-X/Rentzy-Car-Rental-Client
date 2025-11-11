@@ -7,8 +7,14 @@ import useCarServiceDetails from "./hooks/useCarServiceDetails";
 import { useGlobalContext } from "../../context/GlobalContext";
 
 const CarServiceDetails: React.FC = () => {
-  const { addToast, showSpinner, hideSpinner, carServicesList, carsData } =
-    useGlobalContext();
+  const {
+    addToast,
+    showSpinner,
+    hideSpinner,
+    carServicesList,
+    carsData,
+    rentalStations,
+  } = useGlobalContext();
 
   const {
     carServiceDetailsData,
@@ -24,7 +30,8 @@ const CarServiceDetails: React.FC = () => {
     showSpinner,
     hideSpinner,
     carServicesList,
-    carsData
+    carsData,
+    rentalStations
   );
 
   const bookServiceFormData = {

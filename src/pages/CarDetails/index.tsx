@@ -9,8 +9,14 @@ import RentalConditionsAccordion from "./components/RentalConditionsAccordion";
 import BookingFormSection from "../../components/common/BookingForm/BookingFormSection";
 
 const CarDetails: React.FC = () => {
-  const { addToast, showSpinner, hideSpinner, carServicesList, carsData } =
-    useGlobalContext();
+  const {
+    addToast,
+    showSpinner,
+    hideSpinner,
+    carServicesList,
+    carsData,
+    rentalStations,
+  } = useGlobalContext();
 
   const {
     carDetailsData,
@@ -26,7 +32,8 @@ const CarDetails: React.FC = () => {
     showSpinner,
     hideSpinner,
     carServicesList,
-    carsData
+    carsData,
+    rentalStations
   );
 
   const bookServiceFormData = {
