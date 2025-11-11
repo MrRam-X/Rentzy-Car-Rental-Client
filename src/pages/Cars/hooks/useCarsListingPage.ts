@@ -292,9 +292,9 @@ const useCarsListingPage = (
           (f) => f.category === "carBrand"
         )?.value;
 
-        const selectedTransmission = filtersData.activeFilters.find(
-          (f) => f.category === "transmission"
-        )?.value;
+        const selectedTransmission = filtersData.activeFilters
+          .filter((f) => f.category === "transmission")
+          .map((f) => f.value);
 
         const rateFilter = filtersData.activeFilters.find(
           (f) => f.category === "perDayRate"
@@ -316,9 +316,8 @@ const useCarsListingPage = (
           car.brand === selectedBrand;
 
         const transmissionMatch =
-          !selectedTransmission ||
-          selectedTransmission === "ALL" ||
-          car.transmission === selectedTransmission;
+          selectedTransmission.length === 0 ||
+          selectedTransmission.includes(car.transmission);
 
         const rateMatch = !rateFilter
           ? true
