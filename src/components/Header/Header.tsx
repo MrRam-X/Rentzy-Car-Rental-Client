@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { NAVBAR_ROUTES } from "../../appConstant";
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,33 +36,21 @@ const Header: React.FC = () => {
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-8">
-              <Link to="/" className="text-brand-gold font-semibold nav-link">
-                Home
-              </Link>
-              <Link
-                to="/about"
-                className="text-white hover:text-brand-gold transition-colors nav-link duration-300"
-              >
-                About
-              </Link>
-              <Link
-                to="/services"
-                className="text-white hover:text-brand-gold transition-colors nav-link duration-300"
-              >
-                Services
-              </Link>
-              <Link
-                to="/cars"
-                className="text-white hover:text-brand-gold transition-colors nav-link duration-300"
-              >
-                Cars
-              </Link>
-              <Link
-                to="/contact"
-                className="text-white hover:text-brand-gold transition-colors nav-link duration-300"
-              >
-                Contact
-              </Link>
+              {NAVBAR_ROUTES.map((routeItem) => {
+                return (
+                  <NavLink
+                    key={routeItem.id}
+                    to={routeItem.to}
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-brand-gold font-semibold nav-link"
+                        : "text-white hover:text-brand-gold transition-colors nav-link duration-300"
+                    }
+                  >
+                    {routeItem.label}
+                  </NavLink>
+                );
+              })}
             </nav>
 
             {/* Contact Info */}
@@ -137,41 +126,22 @@ const Header: React.FC = () => {
             </button>
           </div>
           <nav className="flex flex-col items-center justify-center h-full -mt-20 space-y-6 text-2xl text-white">
-            <Link
-              to="/"
-              className="text-brand-gold font-semibold"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Home
-            </Link>
-            <Link
-              to="/about"
-              className="hover:text-brand-gold transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              About
-            </Link>
-            <Link
-              to="/services"
-              className="hover:text-brand-gold transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Services
-            </Link>
-            <Link
-              to="/cars"
-              className="hover:text-brand-gold transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Cars
-            </Link>
-            <Link
-              to="/contact"
-              className="hover:text-brand-gold transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Contact
-            </Link>
+            {NAVBAR_ROUTES.map((routeItem) => {
+              return (
+                <NavLink
+                  key={routeItem.id}
+                  to={routeItem.to}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-brand-gold font-semibold"
+                      : "hover:text-brand-gold transition-colors"
+                  }
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {routeItem.label}
+                </NavLink>
+              );
+            })}
           </nav>
         </div>
       )}

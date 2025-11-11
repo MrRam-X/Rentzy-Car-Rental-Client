@@ -28,7 +28,7 @@ const API_ROUTE_NAMES = {
   GET_BOOKING_RECEIPT: "bookings/payment-receipt",
   RENTAL_STATIONS: "rental-stations",
   CREATE_AUTO_RENTAL: "auto-rentals/create",
-  SEND_GET_IN_TOUCH_MESSAGE: 'contact-us/get-in-touch/send'
+  SEND_GET_IN_TOUCH_MESSAGE: "contact-us/get-in-touch/send",
 };
 
 const SPORTS_IMAGE_URL = `${BASE_IMAGE_URL}/Sports`;
@@ -51,9 +51,17 @@ const APP_ROUTE_NAMES = {
   HOME: "/",
   ABOUT: "/about",
   CONTACT: "/contact",
-  CARS: "cars",
+  CARS: "/cars",
   SERVICES: "/services",
 };
+
+const NAVBAR_ROUTES = [
+  { id: "nav-home", label: "Home", to: APP_ROUTE_NAMES.HOME },
+  { id: "nav-about", label: "About", to: APP_ROUTE_NAMES.ABOUT },
+  { id: "nav-services", label: "Services", to: APP_ROUTE_NAMES.SERVICES },
+  { id: "nav-cars", label: "Cars", to: APP_ROUTE_NAMES.CARS },
+  { id: "nav-contact", label: "Contact", to: APP_ROUTE_NAMES.CONTACT },
+];
 
 const APP_ROUTES: AppRoute[] = [
   { path: "/", Component: Home },
@@ -137,6 +145,7 @@ const INITIAL_CONTACT_FORM_DATA = {
 export {
   APP_ROUTE_NAMES,
   APP_ROUTES,
+  NAVBAR_ROUTES,
   INITIAL_DISPLAY_CAR_FLEET_VEHICLES,
   API_URL,
   API_ROUTE_NAMES,
