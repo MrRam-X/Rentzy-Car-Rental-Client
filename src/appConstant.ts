@@ -28,6 +28,7 @@ const API_ROUTE_NAMES = {
   GET_BOOKING_RECEIPT: "bookings/payment-receipt",
   RENTAL_STATIONS: "rental-stations",
   CREATE_AUTO_RENTAL: "auto-rentals/create",
+  SEND_GET_IN_TOUCH_MESSAGE: 'contact-us/get-in-touch/send'
 };
 
 const SPORTS_IMAGE_URL = `${BASE_IMAGE_URL}/Sports`;
@@ -68,6 +69,8 @@ const INITIAL_DISPLAY_CAR_FLEET_VEHICLES = 6;
 const MAX_RENT_PERIOD_IN_DAYS = 20;
 const CAR_ITEMS_PER_PAGE = 8;
 const MAX_VISIBLE_PAGINATION_BUTTON = 3;
+const MAX_CONTACT_FORM_SUBJECT_LENGTH = 20;
+const MAX_CONTACT_FORM_MESSAGE_LENGTH = 100;
 
 const CAR_TYPES_OPTIONS = [
   {
@@ -90,7 +93,7 @@ const CAR_TYPES_OPTIONS = [
     label: "SUVS",
     value: CarTypes.SUV,
   },
-    {
+  {
     label: "Economy",
     value: CarTypes.Economy,
   },
@@ -123,6 +126,14 @@ const INITIAL_AUTO_RENTAL_FORM_DATA = {
   email: "",
 };
 
+const INITIAL_CONTACT_FORM_DATA = {
+  fullName: "",
+  email: "",
+  contactNumber: "",
+  subject: "",
+  message: "",
+};
+
 export {
   APP_ROUTE_NAMES,
   APP_ROUTES,
@@ -138,4 +149,7 @@ export {
   ERROR_MESSAGES,
   INITIAL_BOOKING_FORM_DATA,
   INITIAL_AUTO_RENTAL_FORM_DATA,
+  INITIAL_CONTACT_FORM_DATA,
+  MAX_CONTACT_FORM_SUBJECT_LENGTH,
+  MAX_CONTACT_FORM_MESSAGE_LENGTH,
 };

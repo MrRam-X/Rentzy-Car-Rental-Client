@@ -1,6 +1,19 @@
 import React from "react";
+import type { ContactForm } from "../../../types/Contact";
 
-const ContactFormAndLocationSection: React.FC = () => {
+type ContactFormAndLocationSectionProps = {
+  contactFormData: ContactForm;
+  onFormDataChangeHandler: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+  onFormSubmitHandler: (
+    event: React.FormEvent<HTMLFormElement>
+  ) => Promise<void>;
+};
+
+const ContactFormAndLocationSection: React.FC<
+  ContactFormAndLocationSectionProps
+> = ({ contactFormData, onFormDataChangeHandler, onFormSubmitHandler }) => {
   return (
     <section id="contact-form-section" className="bg-gray-100 py-24 sm:py-32">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
@@ -10,13 +23,19 @@ const ContactFormAndLocationSection: React.FC = () => {
             <h2 className="text-3xl sm:text-4xl font-bold text-brand-dark mb-8">
               Get in touch
             </h2>
-            <form action="#" method="POST">
+            <form
+              onSubmit={(e) => {
+                onFormSubmitHandler(e);
+              }}
+            >
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {/* Your Name */}
                 <div>
                   <input
+                    value={contactFormData.fullName}
+                    onChange={onFormDataChangeHandler}
                     type="text"
-                    name="name"
+                    name="fullName"
                     id="name"
                     required
                     placeholder="Your Name *"
@@ -26,6 +45,8 @@ const ContactFormAndLocationSection: React.FC = () => {
                 {/* Your Email */}
                 <div>
                   <input
+                    value={contactFormData.email}
+                    onChange={onFormDataChangeHandler}
                     type="email"
                     name="email"
                     id="email"
@@ -37,8 +58,10 @@ const ContactFormAndLocationSection: React.FC = () => {
                 {/* Your Number */}
                 <div>
                   <input
+                    value={contactFormData.contactNumber}
+                    onChange={onFormDataChangeHandler}
                     type="tel"
-                    name="phone"
+                    name="contactNumber"
                     id="phone"
                     required
                     placeholder="Your Number *"
@@ -48,6 +71,8 @@ const ContactFormAndLocationSection: React.FC = () => {
                 {/* Subject */}
                 <div>
                   <input
+                    value={contactFormData.subject}
+                    onChange={onFormDataChangeHandler}
                     type="text"
                     name="subject"
                     id="subject"
@@ -59,6 +84,8 @@ const ContactFormAndLocationSection: React.FC = () => {
                 {/* Message */}
                 <div className="sm:col-span-2">
                   <textarea
+                    value={contactFormData.message}
+                    onChange={onFormDataChangeHandler}
                     name="message"
                     id="message"
                     rows={6}

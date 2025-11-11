@@ -13,6 +13,7 @@ import type {
   AutoRentalPayload,
   AutoRentalResponse,
 } from "../types/AutoRental";
+import type { GetInTouchPayload, GetInTouchResponse } from "../types/Contact";
 
 type QueryParams = Record<string, string | number | boolean>;
 
@@ -31,6 +32,7 @@ const {
   GET_BOOKING_RECEIPT,
   RENTAL_STATIONS,
   CREATE_AUTO_RENTAL,
+  SEND_GET_IN_TOUCH_MESSAGE,
 } = API_ROUTE_NAMES;
 
 /**
@@ -187,6 +189,25 @@ const createAutoRentalBookingOrder = async (
   }
 };
 
+/**
+ * Sends a message to get in touch.
+ * @returns A promise that resolves to a Get In touch message object.
+ */
+const sendGetInTouchMessage = async (
+  payload: GetInTouchPayload
+): Promise<GetInTouchResponse> => {
+  try {
+    const response = await apiClient.post<GetInTouchResponse>(
+      `/${SEND_GET_IN_TOUCH_MESSAGE}`,
+      { ...payload }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error sending message:", error);
+    throw new Error("Failed to send message.");
+  }
+};
+
 export const carService = {
   getAllCars,
   getCarDetails,
@@ -197,4 +218,5 @@ export const carService = {
   getServiceBookingReceipt,
   getAllRentalStations,
   createAutoRentalBookingOrder,
+  sendGetInTouchMessage,
 };
