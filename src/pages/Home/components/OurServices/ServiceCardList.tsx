@@ -1,14 +1,15 @@
 import React from "react";
-import type { ServiceCardType } from "../../types";
+import type { ServiceCardType, ServiceListProps } from "../../types";
 import ServiceCard from "./ServiceCard";
-import { useGlobalContext } from "../../../../context/GlobalContext";
 
-type ServiceCardListProps = {
+type ServiceCardListProps = ServiceListProps & {
   servicesList: ServiceCardType[];
 };
 
-const ServiceCardList: React.FC<ServiceCardListProps> = ({ servicesList }) => {
-  const { carServicesList } = useGlobalContext();
+const ServiceCardList: React.FC<ServiceCardListProps> = ({
+  servicesList,
+  carServicesList,
+}) => {
   return (
     <>
       {servicesList.map((service) => {

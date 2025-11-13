@@ -10,24 +10,37 @@ import { useGlobalContext } from "../../context/GlobalContext";
 import useHomePageData from "./hooks/useHomePageData";
 
 const Home: React.FC = () => {
-  const { addToast, showSpinner, hideSpinner, rentalStations, carsData } = useGlobalContext();
+  const {
+    addToast,
+    showSpinner,
+    hideSpinner,
+    rentalStations,
+    carsData,
+    carServicesList,
+  } = useGlobalContext();
   const {
     autoRentalFormData,
     pickupLocationList,
     categoriesList,
     handleSubmitAutoRental,
     onChangeAutoRentalFormData,
-  } = useHomePageData(addToast, showSpinner, hideSpinner, rentalStations, carsData);
+  } = useHomePageData(
+    addToast,
+    showSpinner,
+    hideSpinner,
+    rentalStations,
+    carsData
+  );
   return (
     <main className="font-outfit" aria-labelledby="home-page">
       {/* Hero Section */}
-      <HeroSectionContainer carsList={categoriesList}/>
+      <HeroSectionContainer carsList={categoriesList} />
 
       {/* About Us Section */}
       <AboutUsSection />
 
       {/* Services Section Carousel*/}
-      <OurServices />
+      <OurServices carServicesList={carServicesList} />
 
       {/* Book Auto Rental */}
       <BookAutoRental
@@ -41,7 +54,7 @@ const Home: React.FC = () => {
       {/* <LuxuryCarFleet /> */}
 
       {/* Car Rental Categories Carousel*/}
-      <CarRentalCategories categoriesList={categoriesList}/>
+      <CarRentalCategories categoriesList={categoriesList} />
 
       {/* Car Rental PROCESS */}
       <CarRentalProcess />

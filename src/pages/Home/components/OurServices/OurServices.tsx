@@ -5,6 +5,7 @@ import airportDriveImage from "../../../../assets/images/AirportDrive.jpg";
 import weddingCarImage from "../../../../assets/images/WeddingCar.jpeg";
 import cityTourImage from "../../../../assets/images/cityTour.jpeg";
 import selfDriveRentalImage from "../../../../assets/images/SelfDriveRental.jpeg";
+import type { ServiceListProps } from "../../types";
 import Carousel from "../../../../components/common/Carousel";
 import ServiceCardList from "./ServiceCardList";
 
@@ -41,7 +42,9 @@ const servicesList = [
   },
 ];
 
-const OurServices: React.FC = () => {
+type OurServicesProps = ServiceListProps;
+
+const OurServices: React.FC<OurServicesProps> = ({ carServicesList }) => {
   return (
     <section className="py-16 sm:py-24 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -56,7 +59,10 @@ const OurServices: React.FC = () => {
         </div>
 
         <Carousel list={servicesList}>
-          <ServiceCardList servicesList={servicesList}/>
+          <ServiceCardList
+            servicesList={servicesList}
+            carServicesList={carServicesList}
+          />
         </Carousel>
       </div>
     </section>

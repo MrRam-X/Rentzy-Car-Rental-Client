@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import type { CarService } from "../../../types/CarService";
-import { useGlobalContext } from "../../../context/GlobalContext";
 import { carService } from "../../../services/CarService";
 
-const useCarServices = () => {
-  const { showSpinner, hideSpinner, updateCarServiceList, carServicesList } =
-    useGlobalContext();
+const useCarServices = (
+  showSpinner: () => void, 
+  hideSpinner: () => void,
+  updateCarServiceList: (serviceList: CarService[]) => void,
+  carServicesList: CarService[]
+) => {
   const [carServiceData, setCarServiceData] = useState<CarService[]>([
     ...carServicesList,
   ]);

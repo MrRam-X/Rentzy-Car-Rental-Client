@@ -1,3 +1,5 @@
+import type { CarService } from "../../types/CarService";
+
 export type VehicleCardType = {
   name: string;
   price: number;
@@ -19,6 +21,10 @@ export type ServiceCardType = {
 };
 
 export type RentalCategoryType = {
-    title: string;
-    imageSrc: string;
-}
+  title: string;
+  imageSrc: string;
+};
+
+export type ServiceListProps = {
+  carServicesList: CarService[];
+};
