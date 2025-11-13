@@ -18,11 +18,11 @@ const Services: React.FC = () => {
       {/* Services Hero Section */}
       <section className="relative h-[70vh] min-h-[300px] w-full bg-hero-pattern bg-cover bg-center flex items-center justify-center text-center">
         <div className="absolute inset-0 bg-black/60"></div>
-        <div className="relative text-center mb-12">
-          <p className="text-brand-gold tracking-[0.3em] uppercase text-sm mb-5">
+        <div className="relative text-center">
+          <p className="text-lg tracking-[0.3em] text-brand-gold uppercase mb-2">
             What we do
           </p>
-          <h2 className="text-4xl font-bold text-white">
+          <h2 className="text-5xl font-semibold text-white tracking-tighter">
             Our <span className="text-brand-gold">Services</span>
           </h2>
         </div>

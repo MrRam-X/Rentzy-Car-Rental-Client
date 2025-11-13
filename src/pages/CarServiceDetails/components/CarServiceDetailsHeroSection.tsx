@@ -13,10 +13,10 @@ const CarServiceDetailsHeroSection: React.FC<
     <section className="relative h-[70vh] min-h-[300px] w-full bg-hero-pattern bg-cover bg-center flex items-center justify-center text-center">
       <div className="absolute inset-0 bg-black/60"></div>
       <div className="relative text-center mb-12">
-        <p className="text-brand-gold tracking-[0.3em] uppercase text-sm mb-5">
+        <p className="text-lg text-brand-gold tracking-[0.3em] uppercase mb-2">
           Services
         </p>
-        <h2 className="text-4xl font-bold text-white">
+        <h2 className="text-5xl font-semibold text-white tracking-tighter">
           {/* Airport <span className="text-brand-gold">Drive</span> */}
           {carServiceDetailsData?.serviceTitle}
         </h2>

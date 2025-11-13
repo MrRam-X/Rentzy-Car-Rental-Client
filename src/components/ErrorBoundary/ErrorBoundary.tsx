@@ -20,7 +20,7 @@ class ErrorBoundary extends Component<Props, State> {
   // This lifecycle method is called when an error is thrown in a descendant component.
   // It updates the state to trigger the rendering of the fallback UI.
   public static getDerivedStateFromError(_: Error): State {
-    void _
+    void _;
     return { hasError: true };
   }
 
@@ -70,7 +70,7 @@ class ErrorBoundary extends Component<Props, State> {
               {/* Action Buttons */}
               <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
                 <button
-                  onClick={(this.handleTryAgain)}
+                  onClick={this.handleTryAgain}
                   className="w-full sm:w-auto bg-brand-gold text-black font-bold py-3 px-8 rounded-full 
                              transition-all duration-300 ease-in-out
                              hover:bg-black hover:text-brand-gold hover:-translate-y-1"
@@ -78,6 +78,7 @@ class ErrorBoundary extends Component<Props, State> {
                   Try Again
                 </button>
                 <Link
+                  onClick={() => window.location.reload()}
                   to={APP_ROUTE_NAMES.HOME}
                   className="w-full sm:w-auto border-2 border-gray-400 text-white font-bold py-3 px-8 rounded-full 
                              transition-all duration-300 ease-in-out

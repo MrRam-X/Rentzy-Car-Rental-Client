@@ -2,14 +2,14 @@ import React from "react";
 
 const CarRentalProcess: React.FC = () => {
   return (
-    <section id="rental-process" className="py-24 bg-white">
+    <section id="rental-process" className="pb-20 bg-white">
       <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* <!-- Section Header --> */}
-        <div className="text-center mb-16">
-          <p className="text-brand-gold font-semibold tracking-[0.2em] uppercase text-sm mb-2">
+        <div className="text-center max-w-2xl mx-auto  mb-16">
+          <p className="text-brand-gold tracking-[0.2em] uppercase text-sm mb-2">
             STEPS
           </p>
-          <h2 className="text-4xl sm:text-5xl font-bold text-brand-dark">
+          <h2 className="text-4xl font-bold text-brand-dark">
             Car Rental <span className="text-brand-gold">Process</span>
           </h2>
         </div>
