@@ -48,7 +48,7 @@ const HeroSectionCarousel: React.FC<HeroSectionCarouselProps> = ({
         {carsList.map((car, index) => (
           <div
             key={index}
-            className={`hero-slide relative w-full h-full flex-shrink-0 bg-cover bg-center ${
+            className={`hero-slide relative w-full h-full flex-shrink-0 bg-cover bg-center bg-gray-900/50 bg-blend-darken ${
               index === currentIndex ? "slide-active" : ""
             }`}
             style={{
@@ -62,22 +62,16 @@ const HeroSectionCarousel: React.FC<HeroSectionCarouselProps> = ({
             <div className="container mx-auto h-full px-4 flex items-center justify-center relative z-10">
               <div className="w-full max-w-3xl text-center">
                 <h1 className="slide-headline text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-10">
-                  {car.carType} Cars <br/>
-                  <span className="text-brand-gold">{`${car.brand} ${car.model}`}</span> <br />
-                  <span className="text-xl md:text-2xl font-bold">Starting @{`${car.priceCurrency} ${car.pricePerDay}.00`} /DAY</span>
+                  {car.carType} Cars <br />
+                  <span className="text-brand-gold">{`${car.brand} ${car.model}`}</span>{" "}
+                  <br />
+                  <span className="text-xl md:text-2xl font-bold">
+                    Starting @{`${car.priceCurrency} ${car.pricePerDay}.00`}{" "}
+                    /DAY
+                  </span>
                 </h1>
-                {/* <div className="slide-description sm:space-x-4 mb-8">
-                  <p className="text-xl md:text-5xl font-bold text-white">
-                    {`${car.brand} ${car.model}`}
-                  </p>
-                  <p className="text-xl md:text-2xl font-bold text-brand-gold">
-                    {`${car.priceCurrency} ${car.pricePerDay}.00`}
-                    <span className="text-sm font-normal text-white">
-                      / DAY
-                    </span>
-                  </p>
-                </div> */}
-                <p className="slide-description mt-4 text-lg text-gray-200 max-w-xl mx-auto">
+
+                <p className="slide-description mt-4 hidden md:block text-lg text-gray-200 max-w-xl mx-auto">
                   {car.generalInformation}
                 </p>
                 <div className="slide-buttons mt-8 flex flex-col sm:flex-row justify-center gap-4">
