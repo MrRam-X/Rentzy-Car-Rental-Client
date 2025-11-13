@@ -63,7 +63,7 @@ const CarServiceDetailsAccordion: React.FC<CarServiceDetailsAccordionProps> = ({
                       contentRefs.current[idx] = el;
                     }}
                     style={{ maxHeight: heights[idx] }}
-                    className="accordion-content overflow-hidden transition-[max-height] duration-500 ease-in-out"
+                    className="accordion-content overflow-hidden max-h-0 transition-[max-height] duration-500 ease-in-out"
                   >
                     <div className="bg-gray-100 rounded-b-2xl p-6 -mt-2 text-gray-600 leading-relaxed">
                       {serviceCondition.description}
