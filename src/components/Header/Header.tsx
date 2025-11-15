@@ -73,7 +73,7 @@ const Header: React.FC = () => {
               </div>
               <div className="text-white contact-text transition-colors duration-300">
                 <p className="text-sm">Need help?</p>
-                <p className="font-semibold">855 100 4444</p>
+                <p className="font-semibold">+91 752-333-4444</p>
               </div>
             </div>
 

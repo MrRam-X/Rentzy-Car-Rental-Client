@@ -100,8 +100,8 @@ const Footer = () => {
               RENT<span className="text-brand-gold">ZY</span>
             </h3>
             <p className="mb-6">
-              Rent a car imperdiet sapien porttitor to the bibendum ellentesue
-              the commodo erat nesuen.
+              Your trusted partner for hassle-free car rentals. We make mobility
+              seamless, affordable, and reliable — every mile of the way.
             </p>
             <div className="flex items-center gap-3">
               <a
@@ -217,7 +217,13 @@ const Footer = () => {
               Want to be notified about our services. Just sign up and we'll
               send you a notification by email.
             </p>
-            <form action="#" className="relative">
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                showComingSoonToaster("Subscribe");
+              }}
+              className="relative"
+            >
               <input
                 type="email"
                 placeholder="Email Address"
