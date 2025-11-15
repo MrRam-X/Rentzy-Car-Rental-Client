@@ -7,10 +7,10 @@ const Footer = () => {
   return (
     <footer id="footer" className="font-outfit bg-brand-dark text-gray-400">
       <div className="container pt-24 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        {/* <!-- Top Contact Bar --> */}
+        {/* Top Contact Bar */}
         <div className="py-10 md:px-6 lg:px-10 border rounded-3xl md:mx-20 lg:mx-0 border-gray-900">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 text-center md:text-left">
-            {/* <!-- Call Us --> */}
+            {/* Call Us */}
             <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
               <div className="flex-shrink-0 w-16 h-16 bg-brand-gold rounded-full flex items-center justify-center">
                 <svg
@@ -34,7 +34,7 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* <!-- Write to us --> */}
+            {/* Write to us */}
             <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
               <div className="flex-shrink-0 w-16 h-16 bg-brand-gold rounded-full flex items-center justify-center">
                 <svg
@@ -58,7 +58,7 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* <!-- Address --> */}
+            {/* Address */}
             <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
               <div className="flex-shrink-0 w-16 h-16 bg-brand-gold rounded-full flex items-center justify-center">
                 <svg
@@ -92,9 +92,9 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* <!-- Main Footer Content --> */}
+        {/* Main Footer Content */}
         <div className="py-16 md:px-20 lg:px-0 grid grid-cols-1 lg:grid-cols-12 gap-10">
-          {/* <!-- Column 1: Brand Info --> */}
+          {/* Column 1: Brand Info */}
           <div className="col-span-3">
             <h3 className="text-3xl font-bold text-white mb-4">
               RENT<span className="text-brand-gold">ZY</span>
@@ -155,7 +155,7 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* <!-- Column 2: Quick Links --> */}
+          {/* Column 2: Quick Links */}
           <div className="col-span-3 lg:col-start-6">
             <h3 className="text-xl font-bold text-white mb-6">Quick Links</h3>
             <ul className="space-y-3">
@@ -170,7 +170,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                 to={APP_ROUTE_NAMES.CARS}
+                  to={APP_ROUTE_NAMES.CARS}
                   className="flex items-center gap-2 hover:text-brand-gold transition-colors"
                 >
                   <span className="w-1.5 h-1.5 bg-brand-gold rounded-full"></span>
@@ -210,7 +210,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* <!-- Column 3: Subscribe --> */}
+          {/* Column 3: Subscribe */}
           <div className="col-span-3 lg:col-start-10">
             <h3 className="text-xl font-bold text-white mb-6">Subscribe</h3>
             <p className="mb-6">
@@ -247,7 +247,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* <!-- Bottom Bar --> */}
+        {/* Bottom Bar */}
         <div className="py-6 border-t border-gray-900 flex flex-col sm:flex-row justify-center items-center gap-4">
           <p className="text-sm text-center sm:text-left">
             ©2025{" "}

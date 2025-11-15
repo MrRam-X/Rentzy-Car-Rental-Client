@@ -48,7 +48,7 @@ const OurServices: React.FC<OurServicesProps> = ({ carServicesList }) => {
   return (
     <section className="py-16 sm:py-24 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* <!-- Section Header --> */}
+        {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12">
           <p className="text-brand-gold tracking-[0.3em] uppercase text-sm mb-2">
             WHAT WE DO

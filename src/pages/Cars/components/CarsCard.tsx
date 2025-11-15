@@ -20,26 +20,23 @@ const CarsCard: React.FC<CarsCardProps> = ({
 }) => {
   return (
     <div className="group bg-brand-card rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 flex flex-col">
-      {/* <!-- Image Container with Hover Effects --> */}
       <div className="relative overflow-hidden">
         <img
           src={generateImageUrl(primaryImageUri, carType)}
           alt={`${brand} ${model}`}
           className="w-full h-56 object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
         />
-        {/* <!-- Darkening Overlay on Hover --> */}
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-500 ease-in-out"></div>
       </div>
 
-      {/* <!-- Content Area --> */}
+      {/* Content Area */}
       <div className="p-6 flex flex-col flex-grow">
         <h3 className="text-2xl font-bold text-brand-dark">{`${brand} ${model}`}</h3>
 
-        {/* <!-- Specs List --> */}
+        {/* Specs List */}
         <ul className="mt-4 pt-4 mb-8 border-t border-gray-200 space-y-6 text-md flex-grow">
           <li className="flex justify-between items-center">
             <span className="flex items-center gap-3 text-gray-600">
-              {/* <!-- NEW Door SVG --> */}
               <svg
                 className="w-5 h-5 text-brand-gold"
                 xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +51,6 @@ const CarsCard: React.FC<CarsCardProps> = ({
           </li>
           <li className="flex justify-between items-center">
             <span className="flex items-center gap-3 text-gray-600">
-              {/* <!-- NEW Passengers SVG --> */}
               <svg
                 className="w-5 h-5 text-brand-gold"
                 xmlns="http://www.w3.org/2000/svg"
@@ -100,13 +96,13 @@ const CarsCard: React.FC<CarsCardProps> = ({
           </li>
         </ul>
 
-        {/* <!-- Price and Button --> */}
+        {/* Price and Button */}
         <div className="flex justify-between items-center mt-6">
           <p className="text-2xl font-bold text-brand-gold">
             {`${priceCurrency} ${pricePerDay}.00`}
             <span className="text-sm font-normal text-gray-500">/ day</span>
           </p>
-          {/* <!-- Details Button with New Hover Effects --> */}
+          {/* Details Button with New Hover Effects */}
           <Link
             to={`/cars/${_id}`}
             className="bg-brand-gold text-black py-5 px-12 rounded-full transition-all duration-300 ease-in-out hover:bg-brand-dark hover:text-white hover:-translate-y-1"

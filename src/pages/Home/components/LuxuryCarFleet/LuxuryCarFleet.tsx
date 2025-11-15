@@ -125,7 +125,6 @@ const LuxuryCarFleet: React.FC = () => {
           id="fleet-grid-container"
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {/* <!-- Car cards will be injected here by JavaScript --> */}
           {activeCategory === "ALL"
             ? carList.map((car, idx) => {
                 return (

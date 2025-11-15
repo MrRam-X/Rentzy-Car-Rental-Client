@@ -73,6 +73,27 @@ const APP_ROUTES: AppRoute[] = [
   { path: "/services/:serviceId", Component: CarServiceDetails },
 ];
 
+const CAR_RENTAL_PROCESS_LIST = [
+  {
+    id: "1",
+    title: "Choose A Car & Service",
+    description:
+      "Select a car and the type of service (purpose of rent)",
+  },
+  {
+    id: "2",
+    title: "Make Payment",
+    description:
+      "Proceed and complete the payment. Get the pdf receipt.",
+  },
+  {
+    id: "3",
+    title: "Enjoy Driving",
+    description:
+      "Get your car from the rental pickup station.",
+  },
+];
+
 const INITIAL_DISPLAY_CAR_FLEET_VEHICLES = 6;
 const MAX_RENT_PERIOD_IN_DAYS = 20;
 const CAR_ITEMS_PER_PAGE = 8;
@@ -161,4 +182,5 @@ export {
   INITIAL_CONTACT_FORM_DATA,
   MAX_CONTACT_FORM_SUBJECT_LENGTH,
   MAX_CONTACT_FORM_MESSAGE_LENGTH,
+  CAR_RENTAL_PROCESS_LIST,
 };
