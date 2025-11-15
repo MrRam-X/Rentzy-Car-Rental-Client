@@ -11,7 +11,8 @@ type GeneralInfoAndBookingSectionProps = {
   luggage: number;
   airCondition: boolean;
   minAgeForDrive: number;
-  onModalOpen: () => void
+  onModalOpen: () => void;
+  showComingSoonToaster: (featureName: string) => void;
 };
 
 const GeneralInfoAndBookingSection: React.FC<
@@ -28,6 +29,7 @@ const GeneralInfoAndBookingSection: React.FC<
   passengers,
   transmission,
   onModalOpen,
+  showComingSoonToaster,
 }) => {
   return (
     <section className="py-16">
@@ -206,7 +208,10 @@ const GeneralInfoAndBookingSection: React.FC<
                       </a>
                       <div className="w-1 h-6"></div>
                       <a
-                        href="#"
+                        onClick={(e) => {
+                          e.preventDefault()
+                          showComingSoonToaster("WhatsApp")
+                        }}
                         className="bg-brand-gold w-3/5 text-center text-black py-4 rounded-r-full hover:bg-brand-dark hover:text-white hover:cursor-pointer transition-colors flex items-center justify-center gap-2"
                       >
                         <svg

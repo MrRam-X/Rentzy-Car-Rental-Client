@@ -11,7 +11,8 @@ type CustomLinkButtonProps = {
   linkTitle: string;
   iconFirst?: boolean;
   iconElementName: string;
-  redirectUrl?: string
+  redirectUrl?: string;
+  onClick?: () => void;
 };
 
 const SVG_ELEMENTS = {
@@ -85,6 +86,7 @@ const CustomLinkButton: React.FC<CustomLinkButtonProps> = ({
   iconFirst = false,
   iconElementName,
   redirectUrl,
+  onClick,
 }) => {
   function getOrientation() {
     if (iconFirst) {
@@ -105,6 +107,7 @@ const CustomLinkButton: React.FC<CustomLinkButtonProps> = ({
   return (
     <Link
       to={redirectUrl || ""}
+      onClick={onClick}
       className={`${customClassName} ${borderClassName} ${colorClassName} ${paddingClassName} ${hoverClassName} ${transitionClassName}`}
     >
       {getOrientation()}

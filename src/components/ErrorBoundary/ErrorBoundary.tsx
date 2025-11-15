@@ -78,13 +78,16 @@ class ErrorBoundary extends Component<Props, State> {
                   Try Again
                 </button>
                 <Link
-                  onClick={() => window.location.reload()}
+                  onClick={() => {
+                    window.location.href = "/"
+                    window.location.reload()
+                  }}
                   to={APP_ROUTE_NAMES.HOME}
                   className="w-full sm:w-auto border-2 border-gray-400 text-white font-bold py-3 px-8 rounded-full 
                              transition-all duration-300 ease-in-out
                              hover:bg-white hover:text-black hover:border-white hover:-translate-y-1"
                 >
-                  Go Home
+                  Refresh
                 </Link>
               </div>
             </div>

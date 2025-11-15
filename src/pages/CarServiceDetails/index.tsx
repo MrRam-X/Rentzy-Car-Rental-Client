@@ -11,6 +11,7 @@ const CarServiceDetails: React.FC = () => {
     addToast,
     showSpinner,
     hideSpinner,
+    showComingSoonToaster,
     carServicesList,
     carsData,
     rentalStations,
@@ -46,6 +47,7 @@ const CarServiceDetails: React.FC = () => {
       <CarServiceDetailsHeroSection
         carServiceDetailsData={carServiceDetailsData}
         onModalOpen={onModalOpen}
+        showComingSoonToaster={showComingSoonToaster}
       />
 
       {/* Service Details */}

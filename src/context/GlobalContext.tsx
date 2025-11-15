@@ -33,6 +33,7 @@ interface GlobalContextType {
   addToast: (title: string, message: string, type: ToastType) => void;
   showSpinner: () => void;
   hideSpinner: () => void;
+  showComingSoonToaster: (featureName: string) => void;
   updateCarServiceList: (serviceList: CarService[]) => void;
 }
 
@@ -100,6 +101,14 @@ export const GlobalContextProvider: React.FC<GlobalContextProviderProps> = ({
     }
   };
 
+  const showComingSoonToaster = (featureName: string) => {
+    addToast(
+      "Coming Soon",
+      `${featureName} feature will be available soon!`,
+      "info"
+    );
+  };
+
   useEffect(() => {
     fetchCarServicesData();
     fetchCarsData();
@@ -110,14 +119,14 @@ export const GlobalContextProvider: React.FC<GlobalContextProviderProps> = ({
   useEffect(() => {
     if (isLoading) {
       // When the spinner is showing, disable scrolling on the body.
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
       // When the spinner is hidden, re-enable scrolling.
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     }
 
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     };
   }, [isLoading]);
 
@@ -132,6 +141,7 @@ export const GlobalContextProvider: React.FC<GlobalContextProviderProps> = ({
       addToast,
       showSpinner,
       hideSpinner,
+      showComingSoonToaster,
       updateCarServiceList,
     }),
     [carServicesList, carsData, rentalStations]

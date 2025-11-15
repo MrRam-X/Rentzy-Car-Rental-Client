@@ -14,6 +14,7 @@ const Home: React.FC = () => {
     addToast,
     showSpinner,
     hideSpinner,
+    showComingSoonToaster,
     rentalStations,
     carsData,
     carServicesList,
@@ -60,7 +61,7 @@ const Home: React.FC = () => {
       <CarRentalProcess />
 
       {/* Contact For Renting */}
-      <ContactForRenting />
+      <ContactForRenting showComingSoonToaster={showComingSoonToaster} />
     </main>
   );
 };

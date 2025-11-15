@@ -2,7 +2,13 @@ import React from "react";
 import bgContactForRenting from "../../assets/images/ContactForRenting.jpg"
 import CustomLinkButton from "./Buttons/CustomLinkButton";
 
-const ContactForRenting: React.FC = () => {
+type ContactForRentingProps = {
+  showComingSoonToaster: (featureName: string) => void;
+}
+
+const ContactForRenting: React.FC<ContactForRentingProps> = ({
+  showComingSoonToaster
+}) => {
   return (
     <section
       id="cta-renting"
@@ -28,7 +34,8 @@ const ContactForRenting: React.FC = () => {
           {/* Button Group */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             {/* WhatsApp Button */}
-            <CustomLinkButton 
+            <CustomLinkButton
+              onClick={() => showComingSoonToaster("WhatsApp Rent Chat")}
               borderClassName="border-2 border-brand-gold rounded-full"
               colorClassName="bg-brand-gold text-black"
               paddingClassName="py-4 px-8"
@@ -40,7 +47,8 @@ const ContactForRenting: React.FC = () => {
             />
 
             {/* Rent Now Button */}
-            <CustomLinkButton 
+            <CustomLinkButton
+              onClick={() => showComingSoonToaster("Rent Now")}
               borderClassName="border-2 border-white rounded-full"
               colorClassName="text-white"
               paddingClassName="py-4 px-8"

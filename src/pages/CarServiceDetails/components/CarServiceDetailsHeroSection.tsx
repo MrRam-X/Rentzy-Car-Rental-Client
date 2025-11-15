@@ -4,11 +4,12 @@ import type { CarService } from "../../../types/CarService";
 type CarServiceDetailsHeroSectionProps = {
   carServiceDetailsData: CarService;
   onModalOpen: () => void;
+  showComingSoonToaster: (featureName: string) => void;
 };
 
 const CarServiceDetailsHeroSection: React.FC<
   CarServiceDetailsHeroSectionProps
-> = ({ carServiceDetailsData, onModalOpen }) => {
+> = ({ carServiceDetailsData, onModalOpen, showComingSoonToaster }) => {
   return (
     <section className="relative h-[70vh] min-h-[300px] w-full bg-hero-pattern bg-cover bg-center flex items-center justify-center text-center">
       <div className="absolute inset-0 bg-black/60"></div>
@@ -23,7 +24,10 @@ const CarServiceDetailsHeroSection: React.FC<
         {/* Button Group */}
         <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
           {/* WhatsApp Button */}
-          <button className="w-full sm:w-auto flex items-center justify-center gap-3 border-2 border-brand-gold bg-brand-gold text-black py-4 px-8 rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300 ease-in-out hover:-translate-y-1">
+          <button
+            onClick={() => showComingSoonToaster("Whatsapp Chat")}
+            className="w-full sm:w-auto flex items-center justify-center gap-3 border-2 border-brand-gold bg-brand-gold text-black py-4 px-8 rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300 ease-in-out hover:-translate-y-1"
+          >
             {/* WhatsApp SVG Icon */}
             <svg
               className="w-6 h-6"

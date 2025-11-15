@@ -13,6 +13,7 @@ const CarDetails: React.FC = () => {
     addToast,
     showSpinner,
     hideSpinner,
+    showComingSoonToaster,
     carServicesList,
     carsData,
     rentalStations,
@@ -65,6 +66,7 @@ const CarDetails: React.FC = () => {
         passengers={carDetailsData?.passengers || 0}
         transmission={carDetailsData?.transmission || ""}
         onModalOpen={onModalOpen}
+        showComingSoonToaster={showComingSoonToaster}
       />
 
       {/* Image Gallery (with Lightbox Modal) */}
@@ -81,7 +83,7 @@ const CarDetails: React.FC = () => {
       />
 
       {/* Section: Interested In Renting */}
-      <ContactForRenting />
+      <ContactForRenting showComingSoonToaster={showComingSoonToaster}/>
 
       <BookingFormSection
         title="Book Your Car"

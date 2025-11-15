@@ -1,4 +1,9 @@
+import { Link } from "react-router-dom";
+import { useGlobalContext } from "../../context/GlobalContext";
+import { APP_ROUTE_NAMES } from "../../appConstant";
+
 const Footer = () => {
+  const { showComingSoonToaster } = useGlobalContext();
   return (
     <footer id="footer" className="font-outfit bg-brand-dark text-gray-400">
       <div className="container pt-24 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -79,7 +84,9 @@ const Footer = () => {
               </div>
               <div>
                 <p className="font-bold text-white text-md">Address</p>
-                <p className="text-sm">123 Random St, Random City, Random State, India</p>
+                <p className="text-sm">
+                  123 Random St, Random City, Random State, India
+                </p>
               </div>
             </div>
           </div>
@@ -98,7 +105,10 @@ const Footer = () => {
             </p>
             <div className="flex items-center gap-3">
               <a
-                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  showComingSoonToaster("Whatsapp");
+                }}
                 className="w-12 h-12 flex items-center justify-center border-2 border-gray-700 rounded-full text-white hover:bg-brand-gold hover:border-brand-gold hover:text-black transition-colors"
               >
                 <svg
@@ -111,7 +121,10 @@ const Footer = () => {
                 </svg>
               </a>
               <a
-                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  showComingSoonToaster("Facebook");
+                }}
                 className="w-12 h-12 flex items-center justify-center border-2 border-gray-700 rounded-full text-white hover:bg-brand-gold hover:border-brand-gold hover:text-black transition-colors"
               >
                 <svg
@@ -124,7 +137,10 @@ const Footer = () => {
                 </svg>
               </a>
               <a
-                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  showComingSoonToaster("YouTube");
+                }}
                 className="w-12 h-12 flex items-center justify-center border-2 border-gray-700 rounded-full text-white hover:bg-brand-gold hover:border-brand-gold hover:text-black transition-colors"
               >
                 <svg
@@ -144,35 +160,38 @@ const Footer = () => {
             <h3 className="text-xl font-bold text-white mb-6">Quick Links</h3>
             <ul className="space-y-3">
               <li>
-                <a
-                  href="#"
+                <Link
+                  to={APP_ROUTE_NAMES.ABOUT}
                   className="flex items-center gap-2 hover:text-brand-gold transition-colors"
                 >
                   <span className="w-1.5 h-1.5 bg-brand-gold rounded-full"></span>
                   About
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                 to={APP_ROUTE_NAMES.CARS}
                   className="flex items-center gap-2 hover:text-brand-gold transition-colors"
                 >
                   <span className="w-1.5 h-1.5 bg-brand-gold rounded-full"></span>
                   Cars
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to={APP_ROUTE_NAMES.CARS}
                   className="flex items-center gap-2 hover:text-brand-gold transition-colors"
                 >
                   <span className="w-1.5 h-1.5 bg-brand-gold rounded-full"></span>
                   Car Types
-                </a>
+                </Link>
               </li>
               <li>
                 <a
-                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    showComingSoonToaster("Team");
+                  }}
                   className="flex items-center gap-2 hover:text-brand-gold transition-colors"
                 >
                   <span className="w-1.5 h-1.5 bg-brand-gold rounded-full"></span>
@@ -180,13 +199,13 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to={APP_ROUTE_NAMES.CONTACT}
                   className="flex items-center gap-2 hover:text-brand-gold transition-colors"
                 >
                   <span className="w-1.5 h-1.5 bg-brand-gold rounded-full"></span>
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -232,7 +251,12 @@ const Footer = () => {
         <div className="py-6 border-t border-gray-900 flex flex-col sm:flex-row justify-center items-center gap-4">
           <p className="text-sm text-center sm:text-left">
             ©2025{" "}
-            <a href="#" className="text-white hover:text-brand-gold underline">
+            <a
+              onClick={(e) => {
+                e.preventDefault();
+              }}
+              className="text-white hover:text-brand-gold underline"
+            >
               Rentzy by Ram Prasad Baidya
             </a>
             . All rights reserved.
