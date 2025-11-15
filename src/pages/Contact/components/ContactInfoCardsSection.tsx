@@ -37,7 +37,7 @@ const ContactInfoCardsSection: React.FC = () => {
                 Email us
               </h3>
               <p className="text-gray-500 mt-1 transition-colors duration-300 group-hover:text-black/70">
-                info@renax.com
+                contact.info@rentzy.com
               </p>
             </div>
           </div>
@@ -92,7 +92,7 @@ const ContactInfoCardsSection: React.FC = () => {
                 Our address
               </h3>
               <p className="text-gray-500 mt-1 transition-colors duration-300 group-hover:text-black/70">
-                Dubai, Water Tower, Office 123
+                123 Random St, Random City, Random State, India
               </p>
             </div>
           </div>
@@ -176,7 +176,7 @@ const ContactInfoCardsSection: React.FC = () => {
                 Call us
               </h3>
               <p className="text-black/70 mt-1 transition-colors duration-300 group-hover:text-black">
-                +971 52-333-4444
+                +91 752-333-4444
               </p>
             </div>
           </div>

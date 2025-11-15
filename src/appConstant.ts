@@ -1,6 +1,14 @@
 import { lazy, type ComponentType } from "react";
 import { CarTypes } from "./types/commonTypes";
-
+import testimonialSarahImg from "./assets/images/testimonials_sarah.jpeg";
+import testimonialMichaelImg from "./assets/images/testimonials_michael.jpeg";
+import testimonialJessicaImg from "./assets/images/testimonials_jessica.jpeg";
+import expertJohnImg from "./assets/images/team_john.jpeg";
+import expertJaneImg from "./assets/images/team_jane.jpg";
+import expertPeterImg from "./assets/images/team_peter.jpg";
+import expertEmilyImg from "./assets/images/team_emilly.jpeg";
+import expertDavidImg from "./assets/images/team_david.jpg";
+import expertSusanImg from "./assets/images/team_susan.jpeg";
 export interface AppRoute {
   path: string;
   Component: ComponentType;
@@ -77,22 +85,87 @@ const CAR_RENTAL_PROCESS_LIST = [
   {
     id: "1",
     title: "Choose A Car & Service",
-    description:
-      "Select a car and the type of service (purpose of rent)",
+    description: "Select a car and the type of service (purpose of rent)",
   },
   {
     id: "2",
     title: "Make Payment",
-    description:
-      "Proceed and complete the payment. Get the pdf receipt.",
+    description: "Proceed and complete the payment. Get the pdf receipt.",
   },
   {
     id: "3",
     title: "Enjoy Driving",
-    description:
-      "Get your car from the rental pickup station.",
+    description: "Get your car from the rental pickup station.",
   },
 ];
+
+const ABOUT_US_SECTION_CONTENT = {
+  SHORTEN_CONTENT:
+    "At Rentzy, we believe mobility should be effortless, stylish, and tailored to your journey. Whether you're chasing adventure in a luxury SUV or navigating the city in a fuel-efficient compact, our fleet is curated to match your lifestyle.",
+  EXTENDED_CONTENT:
+    "We don’t stop at cars — from booking to drop-off, we’re here to make your rental experience smooth, flexible, and memorable. With transparent pricing, expanding locations, and a team that truly cares, Rentzy is redefining what it means to rent a car. We deliver trust, transparency, and top-tier service with every ride.",
+  PERKS_LIST: [
+    "Premium Sports & Luxury Vehicles",
+    "Affordable Economy Options",
+    "Personalized Rental Experience",
+    "Dedicated Customer Support",
+  ],
+  TESTIMONIALS_LIST: [
+    {
+      quote:
+        "Renting a car from Rentzy was an absolute breeze! The vehicle was immaculate and the customer service was top-notch. Highly recommended for a seamless experience.",
+      userName: "Sarah L.",
+      userDesignation: "Business Traveler",
+      imgName: testimonialSarahImg,
+    },
+    {
+      quote:
+        "The best luxury car selection in the city. I was able to book a stunning convertible for the weekend with no hassle. The team was professional and accommodating.",
+      userName: "Michael B.",
+      userDesignation: "Weekend Renter",
+      imgName: testimonialMichaelImg,
+    },
+    {
+      quote:
+        "As a frequent renter, I value reliability and efficiency. Rentzy delivers on both fronts every single time. Their process is straightforward and their cars are always in perfect condition.",
+      userName: "Jessica P.",
+      userDesignation: "Corporate Client",
+      imgName: testimonialJessicaImg,
+    },
+  ],
+  EXPERTS_LIST: [
+    {
+      name: "John Doe",
+      designation: "Founder & CEO",
+      imgName: expertJohnImg,
+    },
+    {
+      name: "Jane Smith",
+      designation: "Operations Manager",
+      imgName: expertJaneImg,
+    },
+    {
+      name: "Peter Jones",
+      designation: "Fleet Director",
+      imgName: expertPeterImg,
+    },
+    {
+      name: "Emily White",
+      designation: "Customer Relations",
+      imgName: expertEmilyImg,
+    },
+    {
+      name: "David Green",
+      designation: "Lead Mechanic",
+      imgName: expertDavidImg,
+    },
+    {
+      name: "Susan Black",
+      designation: "Marketing Head",
+      imgName: expertSusanImg,
+    },
+  ],
+};
 
 const INITIAL_DISPLAY_CAR_FLEET_VEHICLES = 6;
 const MAX_RENT_PERIOD_IN_DAYS = 20;
@@ -183,4 +256,5 @@ export {
   MAX_CONTACT_FORM_SUBJECT_LENGTH,
   MAX_CONTACT_FORM_MESSAGE_LENGTH,
   CAR_RENTAL_PROCESS_LIST,
+  ABOUT_US_SECTION_CONTENT,
 };

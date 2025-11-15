@@ -6,7 +6,7 @@ const CarRentalProcess: React.FC = () => {
     <section id="rental-process" className="pb-20 bg-white">
       <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto  mb-16">
+        <div className="text-center max-w-2xl mx-auto mb-16">
           <p className="text-brand-gold tracking-[0.2em] uppercase text-sm mb-2">
             STEPS
           </p>

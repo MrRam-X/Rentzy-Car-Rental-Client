@@ -8,6 +8,7 @@ import CarRentalCategories from "./components/CarRentalCategories/CarRentalCateg
 import HeroSectionContainer from "./components/HeroSection/HeroSectionContainer";
 import { useGlobalContext } from "../../context/GlobalContext";
 import useHomePageData from "./hooks/useHomePageData";
+import useAboutUsData from "../../hooks/useAboutUsData";
 
 const Home: React.FC = () => {
   const {
@@ -19,6 +20,7 @@ const Home: React.FC = () => {
     carsData,
     carServicesList,
   } = useGlobalContext();
+
   const {
     autoRentalFormData,
     pickupLocationList,
@@ -32,13 +34,20 @@ const Home: React.FC = () => {
     rentalStations,
     carsData
   );
+
+  const { mainContent, perksList, isAboutPage } = useAboutUsData();
+
   return (
     <main className="font-outfit" aria-labelledby="home-page">
       {/* Hero Section */}
       <HeroSectionContainer carsList={categoriesList} />
 
       {/* About Us Section */}
-      <AboutUsSection />
+      <AboutUsSection
+        mainContent={mainContent}
+        perksList={perksList}
+        isAboutPage={isAboutPage}
+      />
 
       {/* Services Section Carousel*/}
       <OurServices carServicesList={carServicesList} />
